@@ -7,7 +7,8 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="32dp"
-    tools:context="lt.chocolatebar.ktustudentams.MainActivity">
+    tools:context="lt.chocolatebar.ktustudentams.MainActivity"
+    android:background="@drawable/background_test_1">
 
     <android.support.v7.widget.AppCompatImageView
         android:layout_width="wrap_content"
@@ -29,16 +30,25 @@
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:inputType="textPassword"
         android:gravity="center"
         android:hint="Slaptažodis"/>
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/prisiminti"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prisiminti mane"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:checked="true"/>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:background="@android:color/transparent"
         android:text="Prisijungti"
         android:textSize="18sp" />
