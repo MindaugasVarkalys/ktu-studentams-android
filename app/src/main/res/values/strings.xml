@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">KTU Studentams</string>
+
+    <string name="username">Prisijungimo varda</string>
+    <string name="password">Slaptažodis</string>
+    <string name="remember_me">Prisiminti mane</string>
+    <string name="login">Prisijungti</string>
 </resources>

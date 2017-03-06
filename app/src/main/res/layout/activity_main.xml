@@ -4,54 +4,54 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_test_1"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="32dp"
-    tools:context="lt.chocolatebar.ktustudentams.MainActivity"
-    android:background="@drawable/background_test_1">
+    android:padding="@dimen/layout_padding"
+    tools:context="lt.chocolatebar.ktustudentams.MainActivity">
 
     <android.support.v7.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ktu_studentams_logo_app"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:src="@drawable/ktu_studentams_logo_app" />
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/username_marginTop"
         android:gravity="center"
-        android:maxLines="1"
+        android:hint="@string/username"
         android:inputType="text"
-        android:hint="Prisijungimo vardas"/>
+        android:maxLines="1" />
 
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:inputType="textPassword"
+        android:layout_marginTop="@dimen/password_marginTop"
         android:gravity="center"
-        android:hint="Slaptažodis"/>
+        android:hint="@string/password"
+        android:inputType="textPassword" />
 
     <android.support.v7.widget.AppCompatCheckBox
         android:id="@+id/remember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:text="Prisiminti mane"
-        android:textSize="15sp"
-        android:layout_marginTop="20dp"
-        android:checked="true"/>
+        android:layout_marginTop="@dimen/remember_me_marginTop"
+        android:checked="true"
+        android:text="@string/remember_me"
+        android:textSize="@dimen/remember_me_textsize" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/login_marginTop"
         android:background="@android:color/transparent"
-        android:text="Prisijungti"
-        android:textSize="18sp" />
+        android:text="@string/login"
+        android:textSize="@dimen/login_textsize" />
 
 </LinearLayout>
