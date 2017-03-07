@@ -1,5 +1,6 @@
 package lt.chocolatebar.ktustudentams;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (passwordInput.getText().toString().isEmpty()) {
             Toast.makeText(this, R.string.password_error_message, Toast.LENGTH_SHORT).show();
             passwordInput.requestFocus();
+        } else {
+            startActivity(new Intent(this, GradesActivity.class));
         }
+
     }
 }
