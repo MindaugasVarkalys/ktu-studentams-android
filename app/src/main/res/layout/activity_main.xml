@@ -33,6 +33,7 @@
         android:layout_marginTop="@dimen/password_marginTop"
         android:gravity="center"
         android:hint="@string/password"
+        android:imeOptions="actionGo"
         android:inputType="textPassword" />
 
     <android.support.v7.widget.AppCompatCheckBox
