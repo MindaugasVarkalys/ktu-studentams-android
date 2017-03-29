@@ -55,7 +55,7 @@ public class SideMenuActivity extends AppCompatActivity
         } else if (id == R.id.nav_options) {
 
         } else if (id == R.id.nav_logout) {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
