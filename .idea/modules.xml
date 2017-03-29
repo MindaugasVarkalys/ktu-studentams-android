@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KTUNAS.iml" filepath="$PROJECT_DIR$/KTUNAS.iml" />
-      <module fileurl="file://$PROJECT_DIR$/KtuStudentams.iml" filepath="$PROJECT_DIR$/KtuStudentams.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/ktu-studentams-android.iml" filepath="$PROJECT_DIR$/ktu-studentams-android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ktustudentam.iml" filepath="$PROJECT_DIR$/ktustudentam.iml" />
     </modules>
   </component>
 </project>
