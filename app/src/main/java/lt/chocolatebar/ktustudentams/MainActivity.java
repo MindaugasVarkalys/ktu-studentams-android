@@ -47,6 +47,5 @@ public class MainActivity extends AppCompatActivity {
         } else {
             startActivity(new Intent(this, GradesActivity.class));
         }
-
     }
 }
