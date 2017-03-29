@@ -10,13 +10,13 @@
     android:padding="@dimen/layout_padding"
     tools:context="lt.chocolatebar.ktustudentams.MainActivity">
 
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:src="@drawable/ktu_studentams_logo_app" />
 
-    <android.support.v7.widget.AppCompatEditText
+    <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         android:inputType="text"
         android:maxLines="1" />
 
-    <android.support.v7.widget.AppCompatEditText
+    <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,17 +36,7 @@
         android:imeOptions="actionGo"
         android:inputType="textPassword" />
 
-    <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/remember"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="@dimen/remember_me_marginTop"
-        android:checked="true"
-        android:text="@string/remember_me"
-        android:textSize="@dimen/remember_me_textsize" />
-
-    <android.support.v7.widget.AppCompatButton
+    <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

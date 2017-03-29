@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             passwordInput.requestFocus();
         } else {
             startActivity(new Intent(this, GradesActivity.class));
+            finish();
         }
     }
 }
