@@ -15,7 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GradesActivity" />
+        <activity
+            android:name=".SideMenuActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_side_menu"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.password_error_message, Toast.LENGTH_SHORT).show();
             passwordInput.requestFocus();
         } else {
-            startActivity(new Intent(this, GradesActivity.class));
+            startActivity(new Intent(this, SideMenuActivity.class));
             finish();
         }
     }

@@ -7,4 +7,20 @@
 
     <string name="username_error_message">Įrašykite prisijungimo vardą</string>
     <string name="password_error_message">Įrašykite slaptažodį</string>
+
+    <string name="side_drawer_student_name">Studento vardas pavarde placeholder</string>
+    <string name="side_drawer_student_email">Studento pastas placeholder</string>
+
+    <string name="side_drawer_schedule">Tvarkaraštis</string>
+    <string name="side_drawer_grade">Pažymiai</string>
+    <string name="side_drawer_choose_time_for_classes">Užsirašymas į užsiėmimus</string>
+    <string name="side_drawer_options">Nustatymai</string>
+    <string name="side_drawer_logout">Atsijungti </string>
+
+    <string name="title_activity_side_menu">SideMenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
