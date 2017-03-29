@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="@dimen/layout_padding"
-    tools:context="lt.chocolatebar.ktustudentams.MainActivity">
+    tools:context="lt.chocolatebar.ktustudentams.LoginActivity">
 
     <ImageView
         android:layout_width="wrap_content"
