@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/side_drawer_student_name"
+        android:text="@string/drawer_student_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:text="@string/side_drawer_student_email"
+        android:text="@string/drawer_student_email"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
 </LinearLayout>

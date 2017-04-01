@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:id="@+id/categories">
+    <group android:id="@+id/categories"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_schedule"
             android:icon="@drawable/ic_schedule"
-            android:title="@string/side_drawer_schedule" />
+            android:title="@string/drawer_schedule" />
         <item
             android:id="@+id/nav_grades"
             android:icon="@drawable/ic_grade"
-            android:title="@string/side_drawer_grade" />
+            android:title="@string/drawer_grade" />
         <item
             android:id="@+id/nav_choose_class_time"
             android:icon="@drawable/ic_assignment"
-            android:title="@string/side_drawer_choose_time_for_classes" />
+            android:title="@string/drawer_choose_time_for_classes" />
     </group>
 
-    <group android:id="@+id/subcategories">
+    <group android:id="@+id/subcategories"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_options"
             android:icon="@drawable/ic_settings"
-            android:title="@string/side_drawer_options" />
+            android:title="@string/drawer_options" />
 
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
-            android:title="@string/side_drawer_logout" />
+            android:title="@string/drawer_logout" />
     </group>
 </menu>
