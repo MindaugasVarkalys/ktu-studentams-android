@@ -1,12 +1,18 @@
 <resources>
     <string name="app_name">KTU Studentams</string>
 
+    <string name="loading">Kraunasi&#8230;</string>
+    <string name="please_wait">Prašome palaukti</string>
+
     <string name="username">Prisijungimo vardas</string>
     <string name="password">Slaptažodis</string>
     <string name="login">Prisijungti</string>
 
-    <string name="username_error_message">Įrašykite prisijungimo vardą</string>
-    <string name="password_error_message">Įrašykite slaptažodį</string>
+    <string name="enter_username">Įrašykite prisijungimo vardą</string>
+    <string name="enter_password">Įrašykite slaptažodį</string>
+    <string name="incorrect_username_or_password">Neteisingas prisijungimo vardas arba slaptažodis</string>
+    <string name="no_internet">Nėra interneto</string>
+    <string name="login_failure">Prisijungimo klaida. Prašome pabandyti vėliau</string>
 
     <string name="drawer_student_name">Studento vardas pavarde placeholder</string>
     <string name="drawer_student_email">Studento pastas placeholder</string>
@@ -17,7 +23,7 @@
     <string name="drawer_options">Nustatymai</string>
     <string name="drawer_logout">Atsijungti </string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Atidaryti šoninį meniu</string>
+    <string name="navigation_drawer_close">Uždaryti šoninį meniu</string>
 
 </resources>

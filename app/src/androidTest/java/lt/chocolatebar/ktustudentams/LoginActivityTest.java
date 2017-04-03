@@ -28,7 +28,7 @@ public class LoginActivityTest {
     @Test
     public void clickLoginWithEmptyUsernameAndPassword_displaysToastAndFocusUsername() throws Exception {
         onView(withId(R.id.login)).perform(click());
-        assertToastDisplayed(R.string.username_error_message, loginActivity);
+        assertToastDisplayed(R.string.enter_username, loginActivity);
         onView(withId(R.id.username)).check(matches(hasFocus()));
     }
 
@@ -36,7 +36,7 @@ public class LoginActivityTest {
     public void clickLoginWithEmptyUsername_displaysToastAndFocusUsername() throws Exception {
         onView(withId(R.id.password)).perform(typeText("Password"), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
-        assertToastDisplayed(R.string.username_error_message, loginActivity);
+        assertToastDisplayed(R.string.enter_username, loginActivity);
         onView(withId(R.id.username)).check(matches(hasFocus()));
     }
 
@@ -44,7 +44,7 @@ public class LoginActivityTest {
     public void clickLoginWithEmptyPassword_displaysToastAndFocusPassword() throws Exception {
         onView(withId(R.id.username)).perform(typeText("Username"), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
-        assertToastDisplayed(R.string.password_error_message, loginActivity);
+        assertToastDisplayed(R.string.enter_password, loginActivity);
         onView(withId(R.id.password)).check(matches(hasFocus()));
     }
 
