@@ -1,10 +1,10 @@
 package lt.chocolatebar.ktustudentams;
 
+import android.app.Fragment;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,14 +12,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import lt.chocolatebar.ktustudentams.fragments.ClassesPickerFragment;
+import lt.chocolatebar.ktustudentams.fragments.GradesFragment;
+import lt.chocolatebar.ktustudentams.fragments.OptionsFragment;
+import lt.chocolatebar.ktustudentams.fragments.ScheduleFragment;
+
 public class SideMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private final FragmentManager manager = getSupportFragmentManager();
+    private final static String KTU_MOODLE_URL = "https://moodle.ktu.edu/";
+
+    private final android.app.FragmentManager manager = getFragmentManager();
     private Toolbar toolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_side_menu);
 
@@ -37,14 +44,19 @@ public class SideMenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        
+
         navigationView.setCheckedItem(R.id.nav_schedule);
 
     }
 
-    protected void setDefaultFragment(Fragment fragment) {
+    public void setDefaultFragment(Fragment fragment) {
         manager.beginTransaction().add(R.id.content_for_fragment, fragment).commit();
         toolbar.setTitle(R.string.drawer_schedule);
+    }
+    public void openMoodleInBrowser() {
+        Uri uriUrl = Uri.parse(KTU_MOODLE_URL);
+        Intent launchBrower = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrower);
     }
 
     @Override
@@ -85,8 +97,11 @@ public class SideMenuActivity extends AppCompatActivity
                     .replace(R.id.content_for_fragment, optionsFragment)
                     .commit();
             toolbar.setTitle(R.string.drawer_options);
+        } else if (id == R.id.nav_moodle) {
+            openMoodleInBrowser();
         } else if (id == R.id.nav_logout) {
             startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

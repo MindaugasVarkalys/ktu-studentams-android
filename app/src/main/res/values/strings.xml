@@ -21,7 +21,29 @@
     <string name="drawer_grade">Pažymiai</string>
     <string name="drawer_choose_time_for_classes">Užsirašymas į užsiėmimus</string>
     <string name="drawer_options">Nustatymai</string>
+    <string name="drawer_moodle">Moodle naršyklėje</string>
     <string name="drawer_logout">Atsijungti </string>
+
+    <string name="settings_default_fragment_title">Pradinis ekranas</string>
+    <string name="settings_scraper_timer_title">Atnaujinimų intervalas</string>
+    <string name="settings_notification_category">Pranešimų nustatymai</string>
+    <string name="settings_notification_on_off_title">Pranešimai</string>
+    <string name="settings_notification_summary">Įjungti arba išjungti pranešimus</string>
+
+    <string-array name="settings_default_fragments">
+        <item>@string/drawer_schedule</item>
+        <item>@string/drawer_grade</item>
+        <item>@string/drawer_choose_time_for_classes</item>
+    </string-array>
+
+    <string-array name="settings_scraper_timer">
+        <item>5 min</item>
+        <item>15 min</item>
+        <item>30 min</item>
+        <item>1 val</item>
+        <item>3 val</item>
+        <item>5 val</item>
+    </string-array>
 
     <string name="navigation_drawer_open">Atidaryti šoninį meniu</string>
     <string name="navigation_drawer_close">Uždaryti šoninį meniu</string>

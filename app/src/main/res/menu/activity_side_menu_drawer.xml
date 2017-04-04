@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:id="@+id/categories"
+    <group
+        android:id="@+id/categories"
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_schedule"
@@ -15,9 +16,15 @@
             android:id="@+id/nav_choose_class_time"
             android:icon="@drawable/ic_assignment"
             android:title="@string/drawer_choose_time_for_classes" />
+        <item
+            android:id="@+id/nav_moodle"
+            android:checkable="false"
+            android:icon="@drawable/ic_web_moodle"
+            android:title="@string/drawer_moodle" />
     </group>
 
-    <group android:id="@+id/subcategories"
+    <group
+        android:id="@+id/subcategories"
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_options"

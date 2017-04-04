@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/options_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/layout_padding"
+    tools:context="lt.chocolatebar.ktustudentams.fragments.OptionsFragment">
+
+    <ListPreference
+        android:defaultValue="@string/drawer_schedule"
+        android:entries="@array/settings_default_fragments"
+        android:entryValues="@array/settings_default_fragments"
+        android:key="list_pref_default_fragment"
+        android:summary="%s"
+        android:title="@string/settings_default_fragment_title" />
+
+
+    <PreferenceCategory android:title="@string/settings_notification_category">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="switch_notifications"
+            android:summary="@string/settings_notification_summary"
+            android:title="@string/settings_notification_on_off_title" />
+
+        <ListPreference
+            android:defaultValue="30 min"
+            android:dependency="switch_notifications"
+            android:entries="@array/settings_scraper_timer"
+            android:entryValues="@array/settings_scraper_timer"
+            android:key="list_pref_scraper_timer"
+            android:summary="%s"
+            android:title="@string/settings_scraper_timer_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

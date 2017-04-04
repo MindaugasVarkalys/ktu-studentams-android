@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/layout_padding"
     android:tag="@string/drawer_choose_time_for_classes"
-    tools:context="lt.chocolatebar.ktustudentams.ClassesPickerFragment">
+    tools:context="lt.chocolatebar.ktustudentams.fragments.ClassesPickerFragment">
 
     <TextView
         android:layout_width="wrap_content"

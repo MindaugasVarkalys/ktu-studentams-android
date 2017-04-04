@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/layout_padding"
     android:tag="@string/drawer_grade"
-    tools:context="lt.chocolatebar.ktustudentams.GradesFragment">
+    tools:context="lt.chocolatebar.ktustudentams.fragments.GradesFragment">
 
 
     <TextView

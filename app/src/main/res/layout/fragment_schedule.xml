@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/layout_padding"
     android:tag="@string/drawer_schedule"
-    tools:context="lt.chocolatebar.ktustudentams.ScheduleFragment">
+    tools:context="lt.chocolatebar.ktustudentams.fragments.ScheduleFragment">
 
     <TextView
         android:layout_width="wrap_content"

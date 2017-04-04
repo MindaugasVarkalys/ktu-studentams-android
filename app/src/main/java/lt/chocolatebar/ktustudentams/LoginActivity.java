@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
     private ProgressDialog progressDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
         passwordInput.setOnEditorActionListener(this::onEditorAction);
     }
 
-    protected boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (actionId == EditorInfo.IME_ACTION_GO) {
             onLoginButtonClick(v);
             return true;
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
         return false;
     }
 
-    protected void onLoginButtonClick(View v) {
+    public void onLoginButtonClick(View v) {
         if (usernameInput.getText().toString().isEmpty()) {
             Toast.makeText(this, R.string.enter_username, Toast.LENGTH_SHORT).show();
             usernameInput.requestFocus();
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
             progressDialog = ProgressDialog.show(this, getString(R.string.loading), getString(R.string.please_wait));
             Login login = new Login();
             login.setOnLoginFinishedListener(this);
-            login.loginAsync(usernameInput.getText().toString(), passwordInput.getText().toString());
+            login.loginAsync(usernameInput.getText().toString().toLowerCase(), passwordInput.getText().toString());
         }
     }
 
