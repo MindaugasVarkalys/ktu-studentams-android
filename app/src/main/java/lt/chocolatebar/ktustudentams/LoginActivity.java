@@ -44,6 +44,11 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
     }
 
     public void onLoginButtonClick(View v) {
+        /*
+        // Uncomment these lines to skip login
+        startActivity(new Intent(this, SideMenuActivity.class));
+        finish();
+        */
         if (usernameInput.getText().toString().isEmpty()) {
             Toast.makeText(this, R.string.enter_username, Toast.LENGTH_SHORT).show();
             usernameInput.requestFocus();

@@ -1,9 +1,11 @@
 package lt.chocolatebar.ktustudentams;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -22,20 +24,17 @@ public class SideMenuActivity extends AppCompatActivity
 
     private final static String KTU_MOODLE_URL = "https://moodle.ktu.edu/";
 
-    private final android.app.FragmentManager manager = getFragmentManager();
-    private Toolbar toolbar;
+    private final FragmentManager manager = getFragmentManager();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_side_menu);
 
-        ScheduleFragment scheduleFragment = new ScheduleFragment();
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setDefaultFragment(scheduleFragment);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setDefaultFragment();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -44,15 +43,19 @@ public class SideMenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        navigationView.setCheckedItem(R.id.nav_schedule);
-
     }
 
-    public void setDefaultFragment(Fragment fragment) {
-        manager.beginTransaction().add(R.id.content_for_fragment, fragment).commit();
-        toolbar.setTitle(R.string.drawer_schedule);
+    public void setDefaultFragment() {
+        SharedPrefs sharedPrefs = new SharedPrefs(this);
+        Class<? extends Fragment> fragmentClass = sharedPrefs.getDefaultFragmentClass();
+        try {
+            Fragment fragment = fragmentClass.newInstance();
+            manager.beginTransaction().add(R.id.content_for_fragment, fragment).commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     public void openMoodleInBrowser() {
         Uri uriUrl = Uri.parse(KTU_MOODLE_URL);
         Intent launchBrower = new Intent(Intent.ACTION_VIEW, uriUrl);
@@ -70,38 +73,33 @@ public class SideMenuActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.nav_schedule) {
-            ScheduleFragment scheduleFragment = new ScheduleFragment();
-            manager.beginTransaction().
-                    replace(R.id.content_for_fragment, scheduleFragment)
-                    .commit();
-            toolbar.setTitle(R.string.drawer_schedule);
-        } else if (id == R.id.nav_grades) {
-            GradesFragment gradesFragment = new GradesFragment();
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment fragment = null;
+        switch (item.getItemId()) {
+            case R.id.nav_schedule:
+                fragment = new ScheduleFragment();
+                break;
+            case R.id.nav_grades:
+                fragment = new GradesFragment();
+                break;
+            case R.id.nav_choose_class_time:
+                fragment = new ClassesPickerFragment();
+                break;
+            case R.id.nav_options:
+                fragment = new OptionsFragment();
+                break;
+            case R.id.nav_moodle:
+                openMoodleInBrowser();
+                break;
+            case R.id.nav_logout:
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+                break;
+        }
+        if (fragment != null) {
             manager.beginTransaction()
-                    .replace(R.id.content_for_fragment, gradesFragment)
+                    .replace(R.id.content_for_fragment, fragment)
                     .commit();
-            toolbar.setTitle(R.string.drawer_grade);
-        } else if (id == R.id.nav_choose_class_time) {
-            ClassesPickerFragment classesPickerFragment = new ClassesPickerFragment();
-            manager.beginTransaction()
-                    .replace(R.id.content_for_fragment, classesPickerFragment)
-                    .commit();
-            toolbar.setTitle(R.string.drawer_choose_time_for_classes);
-        } else if (id == R.id.nav_options) {
-            OptionsFragment optionsFragment = new OptionsFragment();
-            manager.beginTransaction()
-                    .replace(R.id.content_for_fragment, optionsFragment)
-                    .commit();
-            toolbar.setTitle(R.string.drawer_options);
-        } else if (id == R.id.nav_moodle) {
-            openMoodleInBrowser();
-        } else if (id == R.id.nav_logout) {
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
