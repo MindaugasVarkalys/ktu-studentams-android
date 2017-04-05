@@ -16,7 +16,6 @@
         android:summary="%s"
         android:title="@string/settings_default_fragment_title" />
 
-
     <PreferenceCategory android:title="@string/settings_notification_category">
 
         <SwitchPreference
@@ -26,10 +25,10 @@
             android:title="@string/settings_notification_on_off_title" />
 
         <ListPreference
-            android:defaultValue="30 min"
+            android:defaultValue="30"
             android:dependency="switch_notifications"
             android:entries="@array/settings_scraper_timer"
-            android:entryValues="@array/settings_scraper_timer"
+            android:entryValues="@array/settings_scraper_timer_values"
             android:key="list_pref_scraper_timer"
             android:summary="%s"
             android:title="@string/settings_scraper_timer_title" />
