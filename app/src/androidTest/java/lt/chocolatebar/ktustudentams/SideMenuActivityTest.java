@@ -15,6 +15,8 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withTagValue;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -49,7 +51,7 @@ public class SideMenuActivityTest {
     public void OpenDrawer_selectOptionsItem_displayFragment() {
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(R.id.nav_options));
-        onView(withId(R.id.options_fragment)).check(matches(isDisplayed()));
+        onView(withText(R.string.settings_notification_category)).check(matches(isDisplayed()));
     }
 
     @Test
