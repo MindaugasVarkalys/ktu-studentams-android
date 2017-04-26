@@ -1,7 +1,6 @@
 package lt.chocolatebar.ktustudentams;
 
 import android.support.test.rule.ActivityTestRule;
-import android.widget.Toast;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
