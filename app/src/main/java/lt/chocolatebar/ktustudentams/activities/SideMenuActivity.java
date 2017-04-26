@@ -1,4 +1,4 @@
-package lt.chocolatebar.ktustudentams;
+package lt.chocolatebar.ktustudentams.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import lt.chocolatebar.ktustudentams.R;
+import lt.chocolatebar.ktustudentams.SharedPrefs;
 import lt.chocolatebar.ktustudentams.fragments.ClassesPickerFragment;
 import lt.chocolatebar.ktustudentams.fragments.GradesFragment;
 import lt.chocolatebar.ktustudentams.fragments.OptionsFragment;
@@ -92,8 +94,7 @@ public class SideMenuActivity extends AppCompatActivity
                 openMoodleInBrowser();
                 break;
             case R.id.nav_logout:
-                startActivity(new Intent(this, LoginActivity.class));
-                finish();
+                onLogout();
                 break;
         }
         if (fragment != null) {
@@ -104,5 +105,12 @@ public class SideMenuActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void onLogout() {
+        SharedPrefs sharedPrefs = new SharedPrefs(this);
+        sharedPrefs.deleteUser();
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 }

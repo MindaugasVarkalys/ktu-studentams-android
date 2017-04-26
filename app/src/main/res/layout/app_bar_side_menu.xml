@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="lt.chocolatebar.ktustudentams.SideMenuActivity">
+    tools:context="lt.chocolatebar.ktustudentams.activities.SideMenuActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

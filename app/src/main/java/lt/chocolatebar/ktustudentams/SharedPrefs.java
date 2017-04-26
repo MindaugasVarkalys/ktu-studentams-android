@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import lt.chocolatebar.ktustudentams.data.User;
 import lt.chocolatebar.ktustudentams.fragments.ClassesPickerFragment;
 import lt.chocolatebar.ktustudentams.fragments.GradesFragment;
 import lt.chocolatebar.ktustudentams.fragments.ScheduleFragment;
@@ -29,5 +30,21 @@ public class SharedPrefs {
         } else {
             return ScheduleFragment.class;
         }
+    }
+
+    public void saveUser(User user) {
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putStringSet("user", user.toStringSet());
+        editor.apply();
+    }
+
+    public User getUser() {
+        return User.getFromStringSet(sharedPrefs.getStringSet("user", null));
+    }
+
+    public void deleteUser() {
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.remove("user");
+        editor.apply();
     }
 }

@@ -1,4 +1,4 @@
-package lt.chocolatebar.ktustudentams.scraper;
+package lt.chocolatebar.ktustudentams.data;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package lt.chocolatebar.ktustudentams;
+package lt.chocolatebar.ktustudentams.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import lt.chocolatebar.ktustudentams.R;
+import lt.chocolatebar.ktustudentams.SharedPrefs;
+import lt.chocolatebar.ktustudentams.data.User;
 import lt.chocolatebar.ktustudentams.scraper.Login;
 import lt.chocolatebar.ktustudentams.scraper.NetworkUtils;
 
@@ -66,18 +69,22 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
     }
 
     @Override
-    public void onLoginFinished(boolean isLoggedIn) {
+    public void onLoginSuccess(User user) {
         progressDialog.dismiss();
-        if (isLoggedIn) {
-            startActivity(new Intent(this, SideMenuActivity.class));
-            finish();
-        } else {
-            Toast.makeText(this, R.string.incorrect_username_or_password, Toast.LENGTH_SHORT).show();
-        }
+        SharedPrefs sharedPrefs = new SharedPrefs(this);
+        sharedPrefs.saveUser(user);
+        startActivity(new Intent(this, SideMenuActivity.class));
+        finish();
     }
 
     @Override
-    public void onLoginFailure() {
+    public void onIncorrectCredentials() {
+        progressDialog.dismiss();
+        Toast.makeText(this, R.string.incorrect_username_or_password, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLoginError() {
         progressDialog.dismiss();
         Toast.makeText(this, R.string.login_failure, Toast.LENGTH_SHORT).show();
     }
