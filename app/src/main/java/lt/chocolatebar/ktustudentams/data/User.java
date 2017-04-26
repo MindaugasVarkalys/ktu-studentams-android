@@ -1,11 +1,5 @@
 package lt.chocolatebar.ktustudentams.data;
 
-import android.support.v4.util.ArraySet;
-
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 public class User {
 
     private String username;

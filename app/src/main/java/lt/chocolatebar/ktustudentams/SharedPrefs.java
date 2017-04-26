@@ -65,7 +65,12 @@ public class SharedPrefs {
 
     public void deleteUser() {
         SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.remove("user");
+        editor.remove("username");
+        editor.remove("password");
+        editor.remove("name");
+        editor.remove("surname");
+        editor.remove("code");
+        editor.remove("email");
         editor.apply();
     }
 }

@@ -42,23 +42,18 @@ public class Login extends AsyncTask<Void, Void, Boolean> {
         return null;
     }
 
-    private Boolean login() throws IOException {
+    private Boolean login() throws Exception {
         Document loginPage = openLoginPage();
-        String authState = loginPage.select("#content > form > input[type=\"hidden\"]").get(0).attr("value");
+        String authState = loginPage.select("#content > form > input[name=\"AuthState\"]").attr("value");
         Document loginFormResponse = postLoginForm(authState);
         if (hasErrorNode(loginFormResponse)) {
             return false;
         }
-        try {
-            user.setEmail(parseUserEmailFromLoginFormResponse(loginFormResponse));
-            Document formResponse = submitAcceptForm(loginFormResponse);
-            Document uais = submitUnsupportedJavaScriptForm(formResponse);
-            parseUserData(uais);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        user.setEmail(parseUserEmailFromLoginFormResponse(loginFormResponse));
+        Document formResponse = submitAcceptForm(loginFormResponse);
+        Document uais = submitUnsupportedJavaScriptForm(formResponse);
+        parseUserData(uais);
+        return true;
     }
 
     private Document openLoginPage() throws IOException {
@@ -97,7 +92,7 @@ public class Login extends AsyncTask<Void, Void, Boolean> {
                 .cookies(Cookies.get())
                 .data("saveconsent", "1")
                 .data("StateId", stateId)
-                .data("yes", "Taip, tęsti")
+                .data("yes", "")
                 .execute();
         Cookies.add(response.cookies());
         return response.parse();
@@ -130,7 +125,7 @@ public class Login extends AsyncTask<Void, Void, Boolean> {
         super.onPostExecute(isLoggedIn);
         if (isLoggedIn == null) {
             onLoginFinishedListener.onLoginError();
-        }else if (isLoggedIn) {
+        } else if (isLoggedIn) {
             onLoginFinishedListener.onLoginSuccess(user);
         } else {
             onLoginFinishedListener.onIncorrectCredentials();
