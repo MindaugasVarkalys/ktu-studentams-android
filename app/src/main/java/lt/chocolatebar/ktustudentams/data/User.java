@@ -1,7 +1,9 @@
 package lt.chocolatebar.ktustudentams.data;
 
-import java.util.HashSet;
+import android.support.v4.util.ArraySet;
+
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class User {
@@ -59,28 +61,5 @@ public class User {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public Set<String> toStringSet() {
-        Set<String> set = new HashSet<>();
-        set.add(username);
-        set.add(password);
-        set.add(email);
-        set.add(name);
-        set.add(surname);
-        set.add(code);
-        return set;
-    }
-
-    public static User getFromStringSet(Set<String> set) {
-        Iterator<String> iterator = set.iterator();
-        User user = new User();
-        user.username = iterator.next();
-        user.password = iterator.next();
-        user.email = iterator.next();
-        user.name = iterator.next();
-        user.surname = iterator.next();
-        user.code = iterator.next();
-        return user;
     }
 }

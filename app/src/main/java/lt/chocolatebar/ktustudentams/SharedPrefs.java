@@ -34,12 +34,33 @@ public class SharedPrefs {
 
     public void saveUser(User user) {
         SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putStringSet("user", user.toStringSet());
+        editor.putString("username", user.getUsername());
+        editor.putString("password", user.getPassword());
+        editor.putString("name", user.getName());
+        editor.putString("surname", user.getSurname());
+        editor.putString("code", user.getCode());
+        editor.putString("email", user.getEmail());
         editor.apply();
     }
 
     public User getUser() {
-        return User.getFromStringSet(sharedPrefs.getStringSet("user", null));
+        User user = new User();
+        user.setUsername(sharedPrefs.getString("username", null));
+        user.setPassword(sharedPrefs.getString("password", null));
+        user.setName(sharedPrefs.getString("name", null));
+        user.setSurname(sharedPrefs.getString("surname", null));
+        user.setCode(sharedPrefs.getString("code", null));
+        user.setEmail(sharedPrefs.getString("email", null));
+        return user;
+    }
+
+    public boolean hasUser() {
+        return sharedPrefs.contains("username") &&
+                sharedPrefs.contains("password") &&
+                sharedPrefs.contains("name") &&
+                sharedPrefs.contains("surname") &&
+                sharedPrefs.contains("code") &&
+                sharedPrefs.contains("email");
     }
 
     public void deleteUser() {

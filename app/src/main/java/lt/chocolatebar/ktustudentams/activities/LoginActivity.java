@@ -24,18 +24,27 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
     private EditText passwordInput;
 
     private ProgressDialog progressDialog;
+    private SharedPrefs sharedPrefs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        sharedPrefs = new SharedPrefs(this);
         usernameInput = (EditText) findViewById(R.id.username);
         passwordInput = (EditText) findViewById(R.id.password);
         final Button login = (Button) findViewById(R.id.login);
 
         login.setOnClickListener(this::onLoginButtonClick);
         passwordInput.setOnEditorActionListener(this::onEditorAction);
+
+        if (sharedPrefs.hasUser()) {
+            User user = sharedPrefs.getUser();
+            usernameInput.setText(user.getUsername());
+            passwordInput.setText(user.getPassword());
+            login(user.getUsername(), user.getPassword());
+        }
     }
 
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -47,11 +56,6 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
     }
 
     public void onLoginButtonClick(View v) {
-        /*
-        // Uncomment these lines to skip login
-        startActivity(new Intent(this, SideMenuActivity.class));
-        finish();
-        */
         if (usernameInput.getText().toString().isEmpty()) {
             Toast.makeText(this, R.string.enter_username, Toast.LENGTH_SHORT).show();
             usernameInput.requestFocus();
@@ -61,17 +65,22 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
         } else if (!NetworkUtils.isNetworkAvailable(this)) {
             Toast.makeText(this, R.string.no_internet, Toast.LENGTH_SHORT).show();
         } else {
-            progressDialog = ProgressDialog.show(this, getString(R.string.loading), getString(R.string.please_wait));
-            Login login = new Login();
-            login.setOnLoginFinishedListener(this);
-            login.loginAsync(usernameInput.getText().toString().toLowerCase(), passwordInput.getText().toString());
+            String username = usernameInput.getText().toString().toLowerCase();
+            String password = passwordInput.getText().toString();
+            login(username, password);
         }
+    }
+
+    private void login(String username, String password) {
+        progressDialog = ProgressDialog.show(this, getString(R.string.loading), getString(R.string.please_wait));
+        Login login = new Login();
+        login.setOnLoginFinishedListener(this);
+        login.loginAsync(username, password);
     }
 
     @Override
     public void onLoginSuccess(User user) {
         progressDialog.dismiss();
-        SharedPrefs sharedPrefs = new SharedPrefs(this);
         sharedPrefs.saveUser(user);
         startActivity(new Intent(this, SideMenuActivity.class));
         finish();
