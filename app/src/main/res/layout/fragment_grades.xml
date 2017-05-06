@@ -1,17 +1,261 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/grades_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/layout_padding"
-    tools:context="lt.chocolatebar.ktustudentams.fragments.GradesFragment">
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Grades fragment test"
-        android:textSize="20dp" />
+        <Spinner xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/year_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/grades_spinner"
+            android:prompt="@string/spinner_title" />/>
 
-</FrameLayout>
+        <Spinner xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/module_spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/grades_spinner" />/>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_weekSize"
+                android:text="Nr."
+                android:textStyle="bold" />/>
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_explanationSize"
+                android:text="@string/grades_explanation"
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_tablesize"
+                android:text="1"
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_tablesize"
+                android:text="2"
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_tablesize"
+                android:text="3"
+                android:textStyle="bold" />/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_week"
+                android:text=""
+                android:textStyle="bold" />/>
+
+
+            <TextView
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_explanation2"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_week"
+                android:text=""
+                android:textStyle="bold" />/>
+
+
+            <TextView
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_explanation2"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_week"
+                android:text=""
+                android:textStyle="bold" />/>
+
+
+            <TextView
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_explanation2"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_week"
+                android:text=""
+                android:textStyle="bold" />/>
+
+
+            <TextView
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_explanation2"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="@dimen/grades_gradeSize"
+                android:text=""
+                android:textStyle="bold" />/>
+
+        </TableRow>
+
+
+
+    </TableLayout>
+</ScrollView>

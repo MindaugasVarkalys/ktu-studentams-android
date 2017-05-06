@@ -10,4 +10,12 @@
 
     <dimen name="nav_header_height">140dp</dimen>
 
+    <dimen name="grades_explanationSize">30dp</dimen>
+    <dimen name="grades_tablesize">25dp</dimen>
+    <dimen name="grades_weekSize">12dp</dimen>
+    <dimen name="grades_spinner">15dp</dimen>
+    <dimen name="grades_week">5dp</dimen>
+    <dimen name="grades_explanation2">10dp</dimen>
+    <dimen name="grades_gradeSize">5dp</dimen>
+
 </resources>

@@ -30,6 +30,9 @@
     <string name="settings_notification_on_off_title">Pranešimai</string>
     <string name="settings_notification_summary">Įjungti arba išjungti pranešimus</string>
 
+    <string name="spinner_title">Pasirinkite metus</string>
+    <string name="grades_explanation">Paaiškinimas</string>
+
     <string-array name="settings_default_fragments">
         <item>@string/drawer_schedule</item>
         <item>@string/drawer_grade</item>
