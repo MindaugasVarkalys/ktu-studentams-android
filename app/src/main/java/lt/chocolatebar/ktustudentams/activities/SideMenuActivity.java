@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Spinner;
 
 import lt.chocolatebar.ktustudentams.R;
 import lt.chocolatebar.ktustudentams.SharedPrefs;
@@ -34,7 +35,7 @@ public class SideMenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_side_menu);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);;
 
         setDefaultFragment();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -45,6 +46,8 @@ public class SideMenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     public void setDefaultFragment() {

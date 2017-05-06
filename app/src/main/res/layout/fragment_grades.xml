@@ -1,72 +1,76 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/layout_padding">
+
 
     <TableLayout
-        android:id="@+id/tableLayout1"
+        android:id="@+id/grades_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
         <Spinner xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/year_spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:padding="@dimen/grades_spinner"
-            android:prompt="@string/spinner_title" />/>
+            android:entries="@array/years"
+            android:prompt="@string/spinner_title" />
 
         <Spinner xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/module_spinner"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/grades_spinner" />/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/grades_spinner"
+            android:entries="@array/modules"/>
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="25dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_weekSize"
                 android:text="Nr."
-                android:textStyle="bold" />/>
+                android:textStyle="bold" />
 
 
             <TextView
-                android:id="@+id/textView2"
+                android:width="140dp"
+                android:height="25dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_explanationSize"
                 android:text="@string/grades_explanation"
-                android:textStyle="bold" />/>
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="25dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_tablesize"
                 android:text="1"
-                android:textStyle="bold" />/>
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="25dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_tablesize"
                 android:text="2"
-                android:textStyle="bold" />/>
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="25dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_tablesize"
                 android:text="3"
-                android:textStyle="bold" />/>
+                android:textStyle="bold" />
 
         </TableRow>
 
@@ -76,185 +80,195 @@
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_week"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="01."
+                android:textStyle="bold" />
 
 
             <TextView
+                android:width="135dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_explanation2"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="Kontrolinis darbas(15)"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="10"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
-                android:background="@drawable/cell_shape"
+                android:width="40dp"
+                android:height="150dp"
+                android:background="@drawable/cell_shape_with_filling"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
                 android:text=""
-                android:textStyle="bold" />/>
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
-                android:background="@drawable/cell_shape"
+                android:width="40dp"
+                android:height="150dp"
+                android:background="@drawable/cell_shape_with_filling"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
                 android:text=""
-                android:textStyle="bold" />/>
+                android:textStyle="bold" />
+
 
         </TableRow>
+
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_week"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="02."
+                android:textStyle="bold" />
 
 
             <TextView
+                android:width="135dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_explanation2"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="Laboratorinis(15)"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="3"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="7"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
-                android:background="@drawable/cell_shape"
+                android:width="40dp"
+                android:height="150dp"
+                android:background="@drawable/cell_shape_with_filling"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
                 android:text=""
-                android:textStyle="bold" />/>
+                android:textStyle="bold" />
+
 
         </TableRow>
+
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_week"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="03."
+                android:textStyle="bold" />
 
 
             <TextView
+                android:width="135dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_explanation2"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="Laboratorinis(15)"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="5"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
-                android:background="@drawable/cell_shape"
+                android:width="40dp"
+                android:height="150dp"
+                android:background="@drawable/cell_shape_with_filling"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
                 android:text=""
-                android:textStyle="bold" />/>
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
-                android:background="@drawable/cell_shape"
+                android:width="40dp"
+                android:height="150dp"
+                android:background="@drawable/cell_shape_with_filling"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
                 android:text=""
-                android:textStyle="bold" />/>
+                android:textStyle="bold" />
+
 
         </TableRow>
+
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_week"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="04."
+                android:textStyle="bold" />
 
 
             <TextView
+                android:width="135dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_explanation2"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="Laboratorinis(15)"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="1"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="3"
+                android:textStyle="bold" />
 
             <TextView
-                android:layout_height="match_parent"
+                android:width="40dp"
+                android:height="150dp"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
-                android:text=""
-                android:textStyle="bold" />/>
+                android:text="9"
+                android:textStyle="bold" />
+
 
         </TableRow>
-
 
 
     </TableLayout>

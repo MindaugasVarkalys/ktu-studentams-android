@@ -32,6 +32,18 @@
 
     <string name="spinner_title">Pasirinkite metus</string>
     <string name="grades_explanation">Paaiškinimas</string>
+    <string-array name="years">
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+    </string-array>
+    <string-array name="modules">
+        <item>Objektinis programavimas</item>
+        <item>Duomenų bazės</item>
+        <item>Informatika</item>
+        <item>Tikimybių teorija</item>
+    </string-array>
 
     <string-array name="settings_default_fragments">
         <item>@string/drawer_schedule</item>
