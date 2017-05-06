@@ -14,9 +14,6 @@
     <string name="no_internet">Nėra interneto</string>
     <string name="login_failure">Prisijungimo klaida. Prašome pabandyti vėliau</string>
 
-    <string name="drawer_student_name">Studento vardas pavarde placeholder</string>
-    <string name="drawer_student_email">Studento pastas placeholder</string>
-
     <string name="drawer_schedule">Tvarkaraštis</string>
     <string name="drawer_grade">Pažymiai</string>
     <string name="drawer_choose_time_for_classes">Užsirašymas į užsiėmimus</string>
@@ -32,6 +29,7 @@
 
     <string name="spinner_title">Pasirinkite metus</string>
     <string name="grades_explanation">Paaiškinimas</string>
+
     <string-array name="years">
         <item>2015</item>
         <item>2016</item>
@@ -60,7 +58,8 @@
         <item>5 val</item>
     </string-array>
 
-    <string-array name="settings_scraper_timer_values"><item>5</item>
+    <string-array name="settings_scraper_timer_values">
+        <item>5</item>
         <item>15</item>
         <item>30</item>
         <item>60</item>

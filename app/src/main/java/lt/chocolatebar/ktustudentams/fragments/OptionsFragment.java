@@ -3,7 +3,6 @@ package lt.chocolatebar.ktustudentams.fragments;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.support.design.widget.NavigationView;
-import android.support.v7.widget.Toolbar;
 
 import lt.chocolatebar.ktustudentams.R;
 

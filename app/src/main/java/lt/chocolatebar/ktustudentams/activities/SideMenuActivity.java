@@ -2,6 +2,8 @@ package lt.chocolatebar.ktustudentams.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,9 +13,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Spinner;
+import android.view.View;
+import android.widget.TextView;
 
 import lt.chocolatebar.ktustudentams.R;
 import lt.chocolatebar.ktustudentams.SharedPrefs;
@@ -28,6 +32,10 @@ public class SideMenuActivity extends AppCompatActivity
     private final static String KTU_MOODLE_URL = "https://moodle.ktu.edu/";
 
     private final FragmentManager manager = getFragmentManager();
+    private SharedPrefs sharedPrefs;
+    NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+    private boolean firstTimeGrouping = true;
+    private final int notificationDisplaysArray[] = new int[2];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +43,7 @@ public class SideMenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_side_menu);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);;
+        setSupportActionBar(toolbar);
 
         setDefaultFragment();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -44,10 +52,13 @@ public class SideMenuActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        sharedPrefs = new SharedPrefs(this);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        setStudentInfoInNavigationHeader(navigationView);
 
-
+        onNewIntent(getIntent());
     }
 
     public void setDefaultFragment() {
@@ -63,8 +74,16 @@ public class SideMenuActivity extends AppCompatActivity
 
     public void openMoodleInBrowser() {
         Uri uriUrl = Uri.parse(KTU_MOODLE_URL);
-        Intent launchBrower = new Intent(Intent.ACTION_VIEW, uriUrl);
-        startActivity(launchBrower);
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
+    }
+
+    public void setStudentInfoInNavigationHeader(NavigationView navigationView) {
+        View headerView = navigationView.getHeaderView(0);
+        TextView navStudentNameLastname = (TextView) headerView.findViewById(R.id.StudentNameLastname);
+        TextView navStudentCode = (TextView) headerView.findViewById(R.id.StudentCode);
+        navStudentNameLastname.setText(sharedPrefs.getUser().getName() + " " + sharedPrefs.getUser().getSurname());
+        navStudentCode.setText(sharedPrefs.getUser().getCode());
     }
 
     @Override
@@ -77,6 +96,99 @@ public class SideMenuActivity extends AppCompatActivity
         }
     }
 
+    private void generateNotificationForGrades() {
+        notificationDisplaysArray[0] = 1;
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationCompat.Builder notificationBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_grade)
+                        .setWhen(System.currentTimeMillis())
+                        .setContentTitle("Naujas pažymys!")
+                        .setContentText("Some Text")
+                        .setStyle(new NotificationCompat.MediaStyle())
+                        .setAutoCancel(true);
+
+        Intent intent = new Intent(this, SideMenuActivity.class);
+        intent.putExtra("ShowGradesFragment", true);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        if (notificationDisplaysArray[1] == 1) {
+            inboxStyle.setBigContentTitle(getString(R.string.app_name));
+            if (firstTimeGrouping) {
+                inboxStyle.addLine("Naujas užsirašymo laikas!");
+                firstTimeGrouping = false;
+            }
+            inboxStyle.addLine("Naujas pažymys!");
+            notificationBuilder.setStyle(inboxStyle);
+            notificationManager.cancel(1);
+        }
+        notificationBuilder.setContentIntent(pendingIntent);
+        notificationManager.notify(0, notificationBuilder.build());
+    }
+
+    private void generateNotificationForClassPicker() {
+        notificationDisplaysArray[1] = 1;
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        NotificationCompat.Builder notificationBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_assignment)
+                        .setWhen(System.currentTimeMillis())
+                        .setContentTitle("Naujas užsirašymo laikas!")
+                        .setContentText("Some Text")
+                        .setStyle(new NotificationCompat.MediaStyle())
+                        .setAutoCancel(true);
+
+        Intent intent = new Intent(this, SideMenuActivity.class);
+        intent.putExtra("ShowClassPickerActivity", true);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        if (notificationDisplaysArray[0] == 1) {
+            inboxStyle.setBigContentTitle(getString(R.string.app_name));
+            if (firstTimeGrouping) {
+                inboxStyle.addLine("Naujas pažymys!");
+                firstTimeGrouping = false;
+            }
+            inboxStyle.addLine("Naujas užsirašymo laikas!");
+            notificationBuilder.setStyle(inboxStyle);
+            notificationManager.cancel(0);
+        }
+        notificationBuilder.setContentIntent(pendingIntent);
+        notificationManager.notify(1, notificationBuilder.build());
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            boolean loadFragmentFromNotification = extras.getBoolean("ShowGradesFragment", false);
+            if (loadFragmentFromNotification) {
+                Fragment fragment = new GradesFragment();
+                manager.beginTransaction()
+                        .replace(R.id.content_for_fragment, fragment)
+                        .commit();
+                if (notificationDisplaysArray[0] == 1 && notificationDisplaysArray[1] == 1) {
+                    notificationDisplaysArray[0] = 0;
+                    notificationDisplaysArray[1] = 0;
+                    firstTimeGrouping = true;
+                    inboxStyle = new NotificationCompat.InboxStyle();
+                } else notificationDisplaysArray[0] = 0;
+            } else {
+                Fragment fragment = new ClassesPickerFragment();
+                manager.beginTransaction()
+                        .replace(R.id.content_for_fragment, fragment)
+                        .commit();
+                if (notificationDisplaysArray[0] == 1 && notificationDisplaysArray[1] == 1) {
+                    notificationDisplaysArray[0] = 0;
+                    notificationDisplaysArray[1] = 0;
+                    firstTimeGrouping = true;
+                    inboxStyle = new NotificationCompat.InboxStyle();
+                } else notificationDisplaysArray[1] = 0;
+            }
+        }
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
@@ -86,9 +198,11 @@ public class SideMenuActivity extends AppCompatActivity
                 break;
             case R.id.nav_grades:
                 fragment = new GradesFragment();
+                generateNotificationForGrades();
                 break;
             case R.id.nav_choose_class_time:
                 fragment = new ClassesPickerFragment();
+                generateNotificationForClassPicker();
                 break;
             case R.id.nav_options:
                 fragment = new OptionsFragment();

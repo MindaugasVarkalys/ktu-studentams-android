@@ -43,7 +43,10 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
             User user = sharedPrefs.getUser();
             usernameInput.setText(user.getUsername());
             passwordInput.setText(user.getPassword());
-            login(user.getUsername(), user.getPassword());
+            if (NetworkUtils.isNetworkAvailable(this)) {
+                login(user.getUsername(), user.getPassword());
+            } else Toast.makeText(this, R.string.no_internet, Toast.LENGTH_SHORT).show();
+
         }
     }
 

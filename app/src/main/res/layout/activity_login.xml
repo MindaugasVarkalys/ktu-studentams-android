@@ -43,6 +43,6 @@
         android:layout_marginTop="@dimen/login_marginTop"
         android:background="@android:color/transparent"
         android:text="@string/login"
-        android:textSize="@dimen/login_textsize" />
+        android:textSize="@dimen/login_textSize" />
 
 </LinearLayout>
