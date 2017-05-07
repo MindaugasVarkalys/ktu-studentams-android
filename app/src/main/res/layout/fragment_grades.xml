@@ -1,4 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/grades_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,7 +8,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:padding="16dp">
+        android:padding="@dimen/grades_tablePadding">
+
 
         <Spinner
             android:id="@+id/year_spinner"
@@ -30,44 +32,44 @@
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:width="40dp"
-                android:height="25dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_txtHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:text="Nr."
+                android:text="@string/grades_weekNum"
                 android:textStyle="bold" />
 
 
             <TextView
-                android:width="140dp"
-                android:height="25dp"
+                android:width="@dimen/grades_explanationSize"
+                android:height="@dimen/grades_txtHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
                 android:text="@string/grades_explanation"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="25dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_txtHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:text="1"
+                android:text="@string/grades_grade11"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="25dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_txtHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:text="2"
+                android:text="@string/grades_grade2"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="25dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_txtHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:text="3"
+                android:text="@string/grades_grade3"
                 android:textStyle="bold" />
 
         </TableRow>
@@ -78,8 +80,8 @@
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
                 android:text="01."
@@ -87,32 +89,33 @@
 
 
             <TextView
+                android:layout_height="match_parent"
                 android:width="140dp"
-                android:height="150dp"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
                 android:text="Kontrolinis darbas(15)"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
                 android:text="10"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape_with_filling"
                 android:gravity="center"
                 android:text=""
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape_with_filling"
                 android:gravity="center"
                 android:text=""
@@ -126,8 +129,8 @@
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
                 android:text="02."
@@ -136,33 +139,31 @@
 
             <TextView
                 android:width="135dp"
-                android:height="150dp"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
                 android:text="Laboratorinis(15)"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
                 android:text="3"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
                 android:text="7"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape_with_filling"
                 android:gravity="center"
                 android:text=""
@@ -176,44 +177,41 @@
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_week"
                 android:text="03."
                 android:textStyle="bold" />
 
 
             <TextView
                 android:width="135dp"
-                android:height="150dp"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_explanation2"
                 android:text="Laboratorinis(15)"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
                 android:text="5"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape_with_filling"
                 android:gravity="center"
                 android:text=""
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape_with_filling"
                 android:gravity="center"
                 android:text=""
@@ -227,47 +225,43 @@
             android:background="@drawable/cell_shape">
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_week"
                 android:text="04."
                 android:textStyle="bold" />
 
 
             <TextView
                 android:width="135dp"
-                android:height="150dp"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_explanation2"
                 android:text="Laboratorinis(15)"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
                 android:text="1"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
                 android:text="3"
                 android:textStyle="bold" />
 
             <TextView
-                android:width="40dp"
-                android:height="150dp"
+                android:width="@dimen/grades_txtWidth"
+                android:height="@dimen/grades_testHeight"
                 android:background="@drawable/cell_shape"
                 android:gravity="center"
-                android:padding="@dimen/grades_gradeSize"
                 android:text="9"
                 android:textStyle="bold" />
 

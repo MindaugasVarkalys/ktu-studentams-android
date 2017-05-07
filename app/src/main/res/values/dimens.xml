@@ -8,18 +8,23 @@
     <dimen name="StudentNameLastname_marginTop">20dp</dimen>
 
 
+
     <dimen name="login_textSize">18sp</dimen>
     <dimen name="StudentNameLastname_textSize">30sp</dimen>
     <dimen name="StudentCode_textSize">20sp</dimen>
 
     <dimen name="nav_header_height">140dp</dimen>
 
-    <dimen name="grades_explanationSize">30dp</dimen>
-    <dimen name="grades_tablesize">25dp</dimen>
+    <dimen name="grades_explanationSize">140dp</dimen>
+    <dimen name="grades_testHeight">150dp</dimen>
     <dimen name="grades_weekSize">12dp</dimen>
     <dimen name="grades_spinner">15dp</dimen>
     <dimen name="grades_week">5dp</dimen>
     <dimen name="grades_explanation2">10dp</dimen>
     <dimen name="grades_gradeSize">5dp</dimen>
+    <dimen name="grades_txtHeight">32dp</dimen>
+    <dimen name="grades_txtWidth">40dp</dimen>
+    <dimen name="grades_tablePadding">16dp</dimen>
+
 
 </resources>

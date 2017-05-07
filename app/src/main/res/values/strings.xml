@@ -29,6 +29,10 @@
 
     <string name="spinner_title">Pasirinkite metus</string>
     <string name="grades_explanation">Paaiškinimas</string>
+    <string name="grades_weekNum">Nr.</string>
+    <string name="grades_grade11">1</string>
+    <string name="grades_grade2">2</string>
+    <string name="grades_grade3">3</string>
 
     <string-array name="years">
         <item>2015</item>
