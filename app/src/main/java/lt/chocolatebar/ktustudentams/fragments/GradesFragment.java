@@ -15,7 +15,9 @@ import java.util.List;
 
 import lt.chocolatebar.ktustudentams.LoadingDialog;
 import lt.chocolatebar.ktustudentams.R;
+import lt.chocolatebar.ktustudentams.data.Module;
 import lt.chocolatebar.ktustudentams.data.Semester;
+import lt.chocolatebar.ktustudentams.network.GradesScraper;
 import lt.chocolatebar.ktustudentams.network.NetworkUtils;
 import lt.chocolatebar.ktustudentams.network.SemestersScraper;
 
@@ -45,8 +47,20 @@ public class GradesFragment extends Fragment {
     }
 
     private void onSemestersScraped(@Nullable List<Semester> semesters) {
-        LoadingDialog.dismiss();
         if (semesters != null) {
+            Log.e("Nuscrapino", "JEGA");
+            GradesScraper gradesScraper = new GradesScraper();
+            gradesScraper.setOnGradesScrapedListener(this::onGradesScraped);
+            gradesScraper.scrap(semesters.get(2).getModules().get(0));
+        } else {
+            Toast.makeText(getActivity(), R.string.failure, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private void onGradesScraped(@Nullable Module module) {
+        LoadingDialog.dismiss();
+        if (module != null) {
             Log.e("Nuscrapino", "JEGA");
         } else {
             Toast.makeText(getActivity(), R.string.failure, Toast.LENGTH_SHORT).show();

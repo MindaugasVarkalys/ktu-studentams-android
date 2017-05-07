@@ -9,7 +9,8 @@ public class Module {
     private String credits;
     private String suggestedGrade;
     private String finalGrade;
-    private String isCredited;
+    private String credited;
+    private List<String> gradesRequestParams;
     private List<Grade> grades;
 
     public String getCode() {
@@ -52,12 +53,20 @@ public class Module {
         this.finalGrade = finalGrade;
     }
 
-    public String getIsCredited() {
-        return isCredited;
+    public String getCredited() {
+        return credited;
     }
 
-    public void setIsCredited(String isCredited) {
-        this.isCredited = isCredited;
+    public void setCredited(String credited) {
+        this.credited = credited;
+    }
+
+    public List<String> getGradesRequestParams() {
+        return gradesRequestParams;
+    }
+
+    public void setGradesRequestParams(List<String> gradesRequestParams) {
+        this.gradesRequestParams = gradesRequestParams;
     }
 
     public List<Grade> getGrades() {

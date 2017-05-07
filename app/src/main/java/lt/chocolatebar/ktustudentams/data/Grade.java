@@ -2,13 +2,13 @@ package lt.chocolatebar.ktustudentams.data;
 
 public class Grade {
 
-    private String week;
-    private String shortName;
-    private String name;
-    private String percentage;
-    private String firstGrade;
-    private String secondGrade;
-    private String thirdGrade;
+    private String week = "";
+    private String shortName = "";
+    private String name = "";
+    private String percentage = "";
+    private String firstGrade = "";
+    private String secondGrade = "";
+    private String thirdGrade = "";
     private boolean isThirdGradeAvailable;
 
     public String getWeek() {

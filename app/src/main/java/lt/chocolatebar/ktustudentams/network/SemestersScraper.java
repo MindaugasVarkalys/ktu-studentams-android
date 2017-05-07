@@ -67,13 +67,13 @@ public class SemestersScraper extends AsyncTask<Void, Void, List<Semester>> {
         for (Element semesterTable: semestersTables) {
             Semester semester = new Semester();
             semester.setName(semesterTable.select("caption > em > b").html());
-            semester.setModules(scrapModulesFromSemesterTable(semesterTable));
+            semester.setModules(parseModulesFromSemesterTable(semesterTable));
             semesters.add(semester);
         }
         return semesters;
     }
 
-    private List<Module> scrapModulesFromSemesterTable(Element semesterTable) {
+    private List<Module> parseModulesFromSemesterTable(Element semesterTable) {
         Elements modulesRows = semesterTable.select("tbody > tr");
         List<Module> modules = new ArrayList<>();
         for (Element moduleRow : modulesRows) {
@@ -82,10 +82,32 @@ public class SemestersScraper extends AsyncTask<Void, Void, List<Semester>> {
                 module.setCode(moduleRow.select("td:nth-child(1) > a").html());
                 module.setName(moduleRow.select("td:nth-child(2)").html());
                 module.setCredits(moduleRow.select("td:nth-child(4)").html());
+                module.setGradesRequestParams(tryParseGradesRequestArguments(moduleRow));
                 modules.add(module);
             }
         }
         return modules;
+    }
+
+    private List<String> tryParseGradesRequestArguments(Element moduleRow) {
+        try {
+            return parseGradesRequestArguments(moduleRow);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    private List<String> parseGradesRequestArguments(Element moduleRow) {
+        String functionWithArguments = moduleRow.select("td:nth-child(6) > span").attr("onclick");
+        int firstArgumentStartIndex = functionWithArguments.indexOf('(') + 1;
+        int firstArgumentEndIndex = functionWithArguments.indexOf(',');
+        int secondArgumentStartIndex = functionWithArguments.indexOf('\'') + 1;
+        int secondArgumentEndIndex = functionWithArguments.lastIndexOf('\'');
+        List<String> arguments = new ArrayList<>();
+        arguments.add(functionWithArguments.substring(firstArgumentStartIndex, firstArgumentEndIndex));
+        arguments.add(functionWithArguments.substring(secondArgumentStartIndex, secondArgumentEndIndex));
+        return arguments;
     }
 
     @Override
