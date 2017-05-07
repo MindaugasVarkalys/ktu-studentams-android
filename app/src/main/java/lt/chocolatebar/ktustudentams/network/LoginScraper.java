@@ -1,4 +1,4 @@
-package lt.chocolatebar.ktustudentams.scraper;
+package lt.chocolatebar.ktustudentams.network;
 
 import android.os.AsyncTask;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 import lt.chocolatebar.ktustudentams.data.Cookies;
 import lt.chocolatebar.ktustudentams.data.User;
 
-public class Login extends AsyncTask<Void, Void, Boolean> {
+public class LoginScraper extends AsyncTask<Void, Void, Boolean> {
 
     private final static String UAIS_LOGIN_URL = "https://uais.cr.ktu.lt/ktuis/studautologin";
     private final static String LOGIN_FORM_POST_URL = "https://login.ktu.lt/simplesaml/module.php/core/loginuserpass.php";

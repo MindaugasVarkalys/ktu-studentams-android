@@ -1,6 +1,5 @@
 package lt.chocolatebar.ktustudentams.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,18 +11,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import lt.chocolatebar.ktustudentams.LoadingDialog;
 import lt.chocolatebar.ktustudentams.R;
 import lt.chocolatebar.ktustudentams.SharedPrefs;
 import lt.chocolatebar.ktustudentams.data.User;
-import lt.chocolatebar.ktustudentams.scraper.Login;
-import lt.chocolatebar.ktustudentams.scraper.NetworkUtils;
+import lt.chocolatebar.ktustudentams.network.LoginScraper;
+import lt.chocolatebar.ktustudentams.network.NetworkUtils;
 
-public class LoginActivity extends AppCompatActivity implements Login.OnLoginFinishedListener {
+public class LoginActivity extends AppCompatActivity implements LoginScraper.OnLoginFinishedListener {
 
     private EditText usernameInput;
     private EditText passwordInput;
 
-    private ProgressDialog progressDialog;
     private SharedPrefs sharedPrefs;
 
     @Override
@@ -75,15 +74,15 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
     }
 
     private void login(String username, String password) {
-        progressDialog = ProgressDialog.show(this, getString(R.string.loading), getString(R.string.please_wait));
-        Login login = new Login();
+        LoadingDialog.show(this);
+        LoginScraper login = new LoginScraper();
         login.setOnLoginFinishedListener(this);
         login.loginAsync(username, password);
     }
 
     @Override
     public void onLoginSuccess(User user) {
-        progressDialog.dismiss();
+        LoadingDialog.dismiss();
         sharedPrefs.saveUser(user);
         startActivity(new Intent(this, SideMenuActivity.class));
         finish();
@@ -91,13 +90,13 @@ public class LoginActivity extends AppCompatActivity implements Login.OnLoginFin
 
     @Override
     public void onIncorrectCredentials() {
-        progressDialog.dismiss();
+        LoadingDialog.dismiss();
         Toast.makeText(this, R.string.incorrect_username_or_password, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onLoginError() {
-        progressDialog.dismiss();
-        Toast.makeText(this, R.string.login_failure, Toast.LENGTH_SHORT).show();
+        LoadingDialog.dismiss();
+        Toast.makeText(this, R.string.failure, Toast.LENGTH_SHORT).show();
     }
 }
