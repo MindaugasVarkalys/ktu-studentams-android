@@ -40,9 +40,9 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/login_marginTop"
+        android:layout_marginTop="@dimen/loginButton_marginTop"
         android:background="@android:color/transparent"
         android:text="@string/login"
-        android:textSize="@dimen/login_textSize" />
+        android:textSize="@dimen/loginButton_textSize" />
 
 </LinearLayout>

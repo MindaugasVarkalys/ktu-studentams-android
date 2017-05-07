@@ -23,9 +23,9 @@ public class SharedPrefs {
 
     public Class<? extends Fragment> getDefaultFragmentClass() {
         String defaultFragment = sharedPrefs.getString("list_pref_default_fragment", "");
-        if (defaultFragment.equals(context.getString(R.string.drawer_grade))) {
+        if (defaultFragment.equals(context.getString(R.string.grades))) {
             return GradesFragment.class;
-        } else if (defaultFragment.equals(context.getString(R.string.drawer_choose_time_for_classes))) {
+        } else if (defaultFragment.equals(context.getString(R.string.choose_time_for_classes))) {
             return ClassesPickerFragment.class;
         } else {
             return ScheduleFragment.class;

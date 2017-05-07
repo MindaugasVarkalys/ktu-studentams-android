@@ -18,7 +18,7 @@ public class ClassesPickerFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle(R.string.drawer_choose_time_for_classes);
+        getActivity().setTitle(R.string.choose_time_for_classes);
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.setCheckedItem(R.id.nav_choose_class_time);
     }

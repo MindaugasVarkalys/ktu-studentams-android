@@ -4,6 +4,10 @@
     <string name="loading">Kraunasi&#8230;</string>
     <string name="please_wait">Prašome palaukti</string>
 
+    <string name="no_internet">Nėra interneto</string>
+    <string name="failure">Operacijos klaida. Prašome pabandyti vėliau</string>
+
+    <!-- Login -->
     <string name="username">Prisijungimo vardas</string>
     <string name="password">Slaptažodis</string>
     <string name="login">Prisijungti</string>
@@ -11,49 +15,24 @@
     <string name="enter_username">Įrašykite prisijungimo vardą</string>
     <string name="enter_password">Įrašykite slaptažodį</string>
     <string name="incorrect_username_or_password">Neteisingas prisijungimo vardas arba slaptažodis</string>
-    <string name="no_internet">Nėra interneto</string>
-    <string name="failure">Operacijos klaida. Prašome pabandyti vėliau</string>
 
-    <string name="drawer_schedule">Tvarkaraštis</string>
-    <string name="drawer_grade">Pažymiai</string>
-    <string name="drawer_choose_time_for_classes">Užsirašymas į užsiėmimus</string>
-    <string name="drawer_options">Nustatymai</string>
-    <string name="drawer_moodle">Moodle naršyklėje</string>
-    <string name="drawer_logout">Atsijungti </string>
+    <!-- Side menu -->
+    <string name="schedule">Tvarkaraštis</string>
+    <string name="grades">Pažymiai</string>
+    <string name="choose_time_for_classes">Užsirašymas į užsiėmimus</string>
+    <string name="settings">Nustatymai</string>
+    <string name="moodle">Moodle naršyklėje</string>
+    <string name="logout">Atsijungti</string>
+    <string name="drawer_open">Atidaryti šoninį meniu</string>
+    <string name="drawer_close">Uždaryti šoninį meniu</string>
 
-    <string name="settings_default_fragment_title">Pradinis ekranas</string>
-    <string name="settings_scraper_timer_title">Atnaujinimų intervalas</string>
-    <string name="settings_notification_category">Pranešimų nustatymai</string>
-    <string name="settings_notification_on_off_title">Pranešimai</string>
-    <string name="settings_notification_summary">Įjungti arba išjungti pranešimus</string>
-
-    <string name="spinner_title">Pasirinkite metus</string>
-    <string name="grades_explanation">Paaiškinimas</string>
-    <string name="grades_weekNum">Nr.</string>
-    <string name="grades_grade11">1</string>
-    <string name="grades_grade2">2</string>
-    <string name="grades_grade3">3</string>
-
-    <string-array name="years">
-        <item>2015</item>
-        <item>2016</item>
-        <item>2017</item>
-        <item>2018</item>
-    </string-array>
-    <string-array name="modules">
-        <item>Objektinis programavimas</item>
-        <item>Duomenų bazės</item>
-        <item>Informatika</item>
-        <item>Tikimybių teorija</item>
-    </string-array>
-
-    <string-array name="settings_default_fragments">
-        <item>@string/drawer_schedule</item>
-        <item>@string/drawer_grade</item>
-        <item>@string/drawer_choose_time_for_classes</item>
-    </string-array>
-
-    <string-array name="settings_scraper_timer">
+    <!-- Settings -->
+    <string name="default_screen">Pradinis ekranas</string>
+    <string name="update_interval">Atnaujinimų intervalas</string>
+    <string name="notification_settings">Pranešimų nustatymai</string>
+    <string name="notifications">Pranešimai</string>
+    <string name="notifications_turn_on_off">Įjungti arba išjungti pranešimus</string>
+    <string-array name="scraper_timer">
         <item>5 min</item>
         <item>15 min</item>
         <item>30 min</item>
@@ -61,8 +40,7 @@
         <item>3 val</item>
         <item>5 val</item>
     </string-array>
-
-    <string-array name="settings_scraper_timer_values">
+    <string-array name="scraper_timer_values">
         <item>5</item>
         <item>15</item>
         <item>30</item>
@@ -70,8 +48,19 @@
         <item>180</item>
         <item>300</item>
     </string-array>
+    <string-array name="default_fragments">
+        <item>@string/schedule</item>
+        <item>@string/grades</item>
+        <item>@string/choose_time_for_classes</item>
+    </string-array>
 
-    <string name="navigation_drawer_open">Atidaryti šoninį meniu</string>
-    <string name="navigation_drawer_close">Uždaryti šoninį meniu</string>
+    <!-- Grades -->
+    <string name="select_semester">Pasirinkite semestrą</string>
+    <string name="select_module">Pasirinkite modulį</string>
+    <string name="no">Nr.</string>
+    <string name="name">Pavadinimas</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="tree">3</string>
 
 </resources>

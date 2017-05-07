@@ -15,7 +15,7 @@ public class OptionsFragment extends PreferenceFragment {
     public void onCreate(Bundle savedinstanceState) {
         super.onCreate(savedinstanceState);
         addPreferencesFromResource(R.xml.fragment_options);
-        getActivity().setTitle(R.string.drawer_options);
+        getActivity().setTitle(R.string.settings);
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.setCheckedItem(R.id.nav_options);
     }

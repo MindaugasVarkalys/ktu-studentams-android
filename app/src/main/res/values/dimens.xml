@@ -1,30 +1,21 @@
 <resources>
-
     <dimen name="layout_padding">32dp</dimen>
 
     <dimen name="username_marginTop">60dp</dimen>
     <dimen name="password_marginTop">40dp</dimen>
-    <dimen name="login_marginTop">50dp</dimen>
-    <dimen name="StudentNameLastname_marginTop">20dp</dimen>
+    <dimen name="loginButton_marginTop">50dp</dimen>
+    <dimen name="loginButton_textSize">18sp</dimen>
 
+    <dimen name="navHeader_height">140dp</dimen>
+    <dimen name="studentNameLastName_marginTop">20dp</dimen>
+    <dimen name="studentNameLastName_textSize">30sp</dimen>
+    <dimen name="studentCode_textSize">20sp</dimen>
 
-
-    <dimen name="login_textSize">18sp</dimen>
-    <dimen name="StudentNameLastname_textSize">30sp</dimen>
-    <dimen name="StudentCode_textSize">20sp</dimen>
-
-    <dimen name="nav_header_height">140dp</dimen>
-
-    <dimen name="grades_explanationSize">140dp</dimen>
-    <dimen name="grades_testHeight">150dp</dimen>
-    <dimen name="grades_weekSize">12dp</dimen>
-    <dimen name="grades_spinner">15dp</dimen>
-    <dimen name="grades_week">5dp</dimen>
-    <dimen name="grades_explanation2">10dp</dimen>
-    <dimen name="grades_gradeSize">5dp</dimen>
-    <dimen name="grades_txtHeight">32dp</dimen>
-    <dimen name="grades_txtWidth">40dp</dimen>
-    <dimen name="grades_tablePadding">16dp</dimen>
-
-
+    <dimen name="gradesSpinner_margin">16dp</dimen>
+    <dimen name="gradesTable_margin">16dp</dimen>
+    <dimen name="gradesTable_weekCol_width">40dp</dimen>
+    <dimen name="gradesTable_nameCol_width">140dp</dimen>
+    <dimen name="gradesTable_gradeCol_width">5dp</dimen>
+    <dimen name="gradesTable_header_height">32dp</dimen>
+    <dimen name="gradesTable_row_height">150dp</dimen>
 </resources>

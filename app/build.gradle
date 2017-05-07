@@ -47,7 +47,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.1'
     compile 'com.github.jhy:jsoup:f28c024ba127fd701f0d195a359afbabff04d7a1'
     testCompile 'junit:junit:4.12'
 }

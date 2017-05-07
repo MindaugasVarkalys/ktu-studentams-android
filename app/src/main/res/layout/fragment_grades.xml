@@ -3,270 +3,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TableLayout
-        android:id="@+id/grades_fragment_table"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="@dimen/grades_tablePadding">
-
+        android:orientation="vertical">
 
         <Spinner
-            android:id="@+id/year_spinner"
+            android:id="@+id/semesters"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:entries="@array/years"
-            android:padding="@dimen/grades_spinner"
-            android:prompt="@string/spinner_title" />
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/gradesSpinner_margin"
+            android:prompt="@string/select_semester" />
 
         <Spinner
-            android:id="@+id/module_spinner"
+            android:id="@+id/modules"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:entries="@array/modules"
-            android:padding="@dimen/grades_spinner" />
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/gradesSpinner_margin"
+            android:prompt="@string/select_module"/>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/cell_shape">
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_txtHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="@string/grades_weekNum"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:width="@dimen/grades_explanationSize"
-                android:height="@dimen/grades_txtHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="@string/grades_explanation"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_txtHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="@string/grades_grade11"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_txtHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="@string/grades_grade2"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_txtHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="@string/grades_grade3"
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow
+        <TableLayout
+            android:id="@+id/grades_table"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/cell_shape">
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/gradesTable_margin"
+            android:stretchColumns="*">
 
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="01."
-                android:textStyle="bold" />
+            <TableRow
+                android:background="@drawable/cell_shape">
 
+                <TextView
+                    android:layout_column="0"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/no"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_height="match_parent"
-                android:width="140dp"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="Kontrolinis darbas(15)"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_column="1"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/name"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="10"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_column="2"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/one"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape_with_filling"
-                android:gravity="center"
-                android:text=""
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_column="3"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/two"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape_with_filling"
-                android:gravity="center"
-                android:text=""
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_column="4"
+                    android:background="@drawable/cell_shape"
+                    android:gravity="center"
+                    android:text="@string/tree"
+                    android:textStyle="bold" />
+            </TableRow>
 
-        </TableRow>
+        </TableLayout>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cell_shape">
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="02."
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:width="135dp"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="Laboratorinis(15)"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="3"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="7"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape_with_filling"
-                android:gravity="center"
-                android:text=""
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cell_shape">
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="03."
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:width="135dp"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="Laboratorinis(15)"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="5"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape_with_filling"
-                android:gravity="center"
-                android:text=""
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape_with_filling"
-                android:gravity="center"
-                android:text=""
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cell_shape">
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="04."
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:width="135dp"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="Laboratorinis(15)"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="1"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="3"
-                android:textStyle="bold" />
-
-            <TextView
-                android:width="@dimen/grades_txtWidth"
-                android:height="@dimen/grades_testHeight"
-                android:background="@drawable/cell_shape"
-                android:gravity="center"
-                android:text="9"
-                android:textStyle="bold" />
-
-
-        </TableRow>
-
-    </TableLayout>
+    </LinearLayout>
 </ScrollView>

@@ -8,29 +8,29 @@
     tools:context="lt.chocolatebar.ktustudentams.fragments.OptionsFragment">
 
     <ListPreference
-        android:defaultValue="@string/drawer_schedule"
-        android:entries="@array/settings_default_fragments"
-        android:entryValues="@array/settings_default_fragments"
+        android:defaultValue="@string/schedule"
+        android:entries="@array/default_fragments"
+        android:entryValues="@array/default_fragments"
         android:key="list_pref_default_fragment"
         android:summary="%s"
-        android:title="@string/settings_default_fragment_title" />
+        android:title="@string/default_screen" />
 
-    <PreferenceCategory android:title="@string/settings_notification_category">
+    <PreferenceCategory android:title="@string/notification_settings">
 
         <SwitchPreference
             android:defaultValue="true"
             android:key="switch_notifications"
-            android:summary="@string/settings_notification_summary"
-            android:title="@string/settings_notification_on_off_title" />
+            android:summary="@string/notifications_turn_on_off"
+            android:title="@string/notifications" />
 
         <ListPreference
             android:defaultValue="30"
             android:dependency="switch_notifications"
-            android:entries="@array/settings_scraper_timer"
-            android:entryValues="@array/settings_scraper_timer_values"
+            android:entries="@array/scraper_timer"
+            android:entryValues="@array/scraper_timer_values"
             android:key="list_pref_scraper_timer"
             android:summary="%s"
-            android:title="@string/settings_scraper_timer_title" />
+            android:title="@string/update_interval" />
 
     </PreferenceCategory>
 

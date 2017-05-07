@@ -18,7 +18,7 @@ public class ScheduleFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle(R.string.drawer_schedule);
+        getActivity().setTitle(R.string.schedule);
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.setCheckedItem(R.id.nav_schedule);
     }

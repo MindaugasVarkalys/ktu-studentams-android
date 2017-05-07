@@ -5,23 +5,33 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import lt.chocolatebar.ktustudentams.LoadingDialog;
 import lt.chocolatebar.ktustudentams.R;
+import lt.chocolatebar.ktustudentams.data.Grade;
 import lt.chocolatebar.ktustudentams.data.Module;
 import lt.chocolatebar.ktustudentams.data.Semester;
 import lt.chocolatebar.ktustudentams.network.GradesScraper;
 import lt.chocolatebar.ktustudentams.network.NetworkUtils;
 import lt.chocolatebar.ktustudentams.network.SemestersScraper;
 
-public class GradesFragment extends Fragment {
+public class GradesFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+
+    private Spinner semesterSpinner, moduleSpinner;
+    private TableLayout table;
+    private List<Semester> semesters;
 
     public GradesFragment() {
     }
@@ -29,10 +39,43 @@ public class GradesFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle(R.string.drawer_grade);
+        getActivity().setTitle(R.string.grades);
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.setCheckedItem(R.id.nav_grades);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        table = (TableLayout) view.findViewById(R.id.grades_table);
+        semesterSpinner = (Spinner) view.findViewById(R.id.semesters);
+        semesterSpinner.setOnItemSelectedListener(this);
+        moduleSpinner = (Spinner) view.findViewById(R.id.modules);
+        moduleSpinner.setOnItemSelectedListener(this);
         scrapSemestersAndModules();
+    }
+
+    private void onSemesterSelectionChanged(int position) {
+        String[] modulesNames = semesters.get(position).getModules().stream().map((Module m) -> m.getCode() + " " + m.getName()).toArray(String[]::new);
+        setSpinnerItems(moduleSpinner, modulesNames);
+    }
+
+    private void onModuleSelectionChanged(int position) {
+        if (NetworkUtils.isNetworkAvailable(getActivity())) {
+            LoadingDialog.show(getActivity());
+            Module module = semesters.get(semesterSpinner.getSelectedItemPosition()).getModules().get(position);
+            GradesScraper scraper = new GradesScraper();
+            scraper.setOnGradesScrapedListener(this::onGradesScraped);
+            scraper.scrap(module);
+        } else {
+            Toast.makeText(getActivity(), R.string.no_internet, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setSpinnerItems(Spinner spinner, String[] items) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 
     private void scrapSemestersAndModules() {
@@ -47,28 +90,62 @@ public class GradesFragment extends Fragment {
     }
 
     private void onSemestersScraped(@Nullable List<Semester> semesters) {
+        LoadingDialog.dismiss();
         if (semesters != null) {
-            Log.e("Nuscrapino", "JEGA");
-            GradesScraper gradesScraper = new GradesScraper();
-            gradesScraper.setOnGradesScrapedListener(this::onGradesScraped);
-            gradesScraper.scrap(semesters.get(2).getModules().get(0));
+            this.semesters = semesters;
+            String[] semestersNames = semesters.stream().map(Semester::getName).toArray(String[]::new);
+            setSpinnerItems(semesterSpinner, semestersNames);
         } else {
             Toast.makeText(getActivity(), R.string.failure, Toast.LENGTH_SHORT).show();
         }
     }
 
-
     private void onGradesScraped(@Nullable Module module) {
         LoadingDialog.dismiss();
-        if (module != null) {
-            Log.e("Nuscrapino", "JEGA");
+        if (module != null && module.getGrades() != null) {
+            buildTable(module);
         } else {
             Toast.makeText(getActivity(), R.string.failure, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void buildTable(Module module) {
+        table.removeViews(1, table.getChildCount() - 1);
+        for (Grade grade : module.getGrades()) {
+            TableRow row = (TableRow) LayoutInflater.from(getActivity()).inflate(R.layout.grades_table_row, null);
+            TextView week = (TextView) row.findViewById(R.id.week);
+            TextView name = (TextView) row.findViewById(R.id.name);
+            TextView firstGrade = (TextView) row.findViewById(R.id.grade1);
+            TextView secondGrade = (TextView) row.findViewById(R.id.grade2);
+            TextView thirdGrade = (TextView) row.findViewById(R.id.grade3);
+
+            week.setText(grade.getWeek());
+            name.setText(grade.getName());
+            firstGrade.setText(grade.getFirstGrade());
+            secondGrade.setText(grade.getSecondGrade());
+            thirdGrade.setText(grade.getThirdGrade());
+            table.addView(row);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_grades, container, false);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (parent.getId()) {
+            case R.id.semesters:
+                onSemesterSelectionChanged(position);
+                break;
+            case R.id.modules:
+                onModuleSelectionChanged(position);
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
     }
 }

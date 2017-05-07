@@ -7,20 +7,20 @@
         <item
             android:id="@+id/nav_schedule"
             android:icon="@drawable/ic_schedule"
-            android:title="@string/drawer_schedule" />
+            android:title="@string/schedule" />
         <item
             android:id="@+id/nav_grades"
             android:icon="@drawable/ic_grade"
-            android:title="@string/drawer_grade" />
+            android:title="@string/grades" />
         <item
             android:id="@+id/nav_choose_class_time"
             android:icon="@drawable/ic_assignment"
-            android:title="@string/drawer_choose_time_for_classes" />
+            android:title="@string/choose_time_for_classes" />
         <item
             android:id="@+id/nav_moodle"
             android:checkable="false"
             android:icon="@drawable/ic_web_moodle"
-            android:title="@string/drawer_moodle" />
+            android:title="@string/moodle" />
     </group>
 
     <group
@@ -29,11 +29,11 @@
         <item
             android:id="@+id/nav_options"
             android:icon="@drawable/ic_settings"
-            android:title="@string/drawer_options" />
+            android:title="@string/settings" />
 
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
-            android:title="@string/drawer_logout" />
+            android:title="@string/logout" />
     </group>
 </menu>
