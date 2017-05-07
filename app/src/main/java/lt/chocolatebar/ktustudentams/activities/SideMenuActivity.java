@@ -96,17 +96,10 @@ public class SideMenuActivity extends AppCompatActivity
         }
     }
 
-    private void generateNotificationForGrades() {
+    private void generateAndDisplayNotificationForGrades() {
         notificationDisplaysArray[0] = 1;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        NotificationCompat.Builder notificationBuilder =
-                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_grade)
-                        .setWhen(System.currentTimeMillis())
-                        .setContentTitle("Naujas pažymys!")
-                        .setContentText("Some Text")
-                        .setStyle(new NotificationCompat.MediaStyle())
-                        .setAutoCancel(true);
+        NotificationCompat.Builder notificationBuilder = buildNotificationForGrades();
 
         Intent intent = new Intent(this, SideMenuActivity.class);
         intent.putExtra("ShowGradesFragment", true);
@@ -127,17 +120,20 @@ public class SideMenuActivity extends AppCompatActivity
         notificationManager.notify(0, notificationBuilder.build());
     }
 
-    private void generateNotificationForClassPicker() {
+    private NotificationCompat.Builder buildNotificationForGrades() {
+        return (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_grade)
+                .setWhen(System.currentTimeMillis())
+                .setContentTitle("Naujas pažymys!")
+                .setContentText("Some Text")
+                .setStyle(new NotificationCompat.MediaStyle())
+                .setAutoCancel(true);
+    }
+
+    private void generateAndDisplayNotificationForClassPicker() {
         notificationDisplaysArray[1] = 1;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        NotificationCompat.Builder notificationBuilder =
-                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_assignment)
-                        .setWhen(System.currentTimeMillis())
-                        .setContentTitle("Naujas užsirašymo laikas!")
-                        .setContentText("Some Text")
-                        .setStyle(new NotificationCompat.MediaStyle())
-                        .setAutoCancel(true);
+        NotificationCompat.Builder notificationBuilder = buildNotificationForClassPicker();
 
         Intent intent = new Intent(this, SideMenuActivity.class);
         intent.putExtra("ShowClassPickerActivity", true);
@@ -158,6 +154,16 @@ public class SideMenuActivity extends AppCompatActivity
         notificationManager.notify(1, notificationBuilder.build());
     }
 
+    private NotificationCompat.Builder buildNotificationForClassPicker() {
+        return (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_assignment)
+                .setWhen(System.currentTimeMillis())
+                .setContentTitle("Naujas užsirašymo laikas!")
+                .setContentText("Some Text")
+                .setStyle(new NotificationCompat.MediaStyle())
+                .setAutoCancel(true);
+    }
+
     @Override
     public void onNewIntent(Intent intent) {
         Bundle extras = intent.getExtras();
@@ -168,25 +174,24 @@ public class SideMenuActivity extends AppCompatActivity
                 manager.beginTransaction()
                         .replace(R.id.content_for_fragment, fragment)
                         .commit();
-                if (notificationDisplaysArray[0] == 1 && notificationDisplaysArray[1] == 1) {
-                    notificationDisplaysArray[0] = 0;
-                    notificationDisplaysArray[1] = 0;
-                    firstTimeGrouping = true;
-                    inboxStyle = new NotificationCompat.InboxStyle();
-                } else notificationDisplaysArray[0] = 0;
+                ResetNotificationStatus(0);
             } else {
                 Fragment fragment = new ClassesPickerFragment();
                 manager.beginTransaction()
                         .replace(R.id.content_for_fragment, fragment)
                         .commit();
-                if (notificationDisplaysArray[0] == 1 && notificationDisplaysArray[1] == 1) {
-                    notificationDisplaysArray[0] = 0;
-                    notificationDisplaysArray[1] = 0;
-                    firstTimeGrouping = true;
-                    inboxStyle = new NotificationCompat.InboxStyle();
-                } else notificationDisplaysArray[1] = 0;
+                ResetNotificationStatus(1);
             }
         }
+    }
+
+    private void ResetNotificationStatus(int id) {
+        if (notificationDisplaysArray[0] == 1 && notificationDisplaysArray[1] == 1) {
+            notificationDisplaysArray[0] = 0;
+            notificationDisplaysArray[1] = 0;
+            firstTimeGrouping = true;
+            inboxStyle = new NotificationCompat.InboxStyle();
+        } else notificationDisplaysArray[id] = 0;
     }
 
     @Override
@@ -198,11 +203,11 @@ public class SideMenuActivity extends AppCompatActivity
                 break;
             case R.id.nav_grades:
                 fragment = new GradesFragment();
-                generateNotificationForGrades();
+                generateAndDisplayNotificationForGrades();
                 break;
             case R.id.nav_choose_class_time:
                 fragment = new ClassesPickerFragment();
-                generateNotificationForClassPicker();
+                generateAndDisplayNotificationForClassPicker();
                 break;
             case R.id.nav_options:
                 fragment = new OptionsFragment();

@@ -1,4 +1,4 @@
-package lt.chocolatebar.ktustudentams.scraper;
+package lt.chocolatebar.ktustudentams.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -12,7 +12,7 @@
     <string name="enter_password">Įrašykite slaptažodį</string>
     <string name="incorrect_username_or_password">Neteisingas prisijungimo vardas arba slaptažodis</string>
     <string name="no_internet">Nėra interneto</string>
-    <string name="login_failure">Prisijungimo klaida. Prašome pabandyti vėliau</string>
+    <string name="failure">Operacijos klaida. Prašome pabandyti vėliau</string>
 
     <string name="drawer_schedule">Tvarkaraštis</string>
     <string name="drawer_grade">Pažymiai</string>
