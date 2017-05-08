@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lt.chocolatebar.ktustudentams.data.Cookies;
-import lt.chocolatebar.ktustudentams.data.Grade;
+import lt.chocolatebar.ktustudentams.data.Week;
 import lt.chocolatebar.ktustudentams.data.Module;
 
 public class GradesScraper extends AsyncTask<Void, Void, Void> {
@@ -23,7 +23,7 @@ public class GradesScraper extends AsyncTask<Void, Void, Void> {
 
     private Module module;
     private Document gradesPage;
-    private List<Integer> gradesIndexes;
+    private List<Integer> weeksIndexes;
     private OnGradesScrapedListener onGradesScrapedListener;
 
     public void setOnGradesScrapedListener(OnGradesScrapedListener onGradesScrapedListener) {
@@ -55,21 +55,21 @@ public class GradesScraper extends AsyncTask<Void, Void, Void> {
 
     private void parseFirstGrade() {
         Elements thirdRow = gradesPage.select("table:nth-child(4) > tbody > tr:nth-child(3) > td");
-        gradesIndexes = new ArrayList<>();
-        List<Grade> grades = new ArrayList<>();
+        weeksIndexes = new ArrayList<>();
+        List<Week> weeks = new ArrayList<>();
         int i;
         for (i = FIRST_ROW_LEFT_COLUMNS_WITHOUT_GRADES - 1; i < thirdRow.size() - FIRST_ROW_RIGHT_COLUMNS_WITHOUT_GRADES; i++) {
             Element cell = thirdRow.get(i);
             if (isCellOpenForGrade(cell)) {
-                gradesIndexes.add(i);
-                Grade grade = new Grade();
+                weeksIndexes.add(i);
+                Week week = new Week();
                 if (!isCellEmpty(cell)) {
-                    grade.setFirstGrade(cell.html());
+                    week.setFirstGrade(cell.html());
                 }
-                grades.add(grade);
+                weeks.add(week);
             }
         }
-        module.setGrades(grades);
+        module.setWeeks(weeks);
         module.setSuggestedGrade(thirdRow.get(i++).html());
         module.setCredited(thirdRow.get(i++).html());
         module.setFinalGrade(thirdRow.get(i).html());
@@ -82,7 +82,7 @@ public class GradesScraper extends AsyncTask<Void, Void, Void> {
             Element cell = forthRow.get(i);
             if (columnHasFirstGrade(i)) {
                 if (!isCellEmpty(cell)) {
-                    module.getGrades().get(j).setSecondGrade(cell.html());
+                    module.getWeeks().get(j).setSecondGrade(cell.html());
                 }
                 j++;
             }
@@ -90,7 +90,7 @@ public class GradesScraper extends AsyncTask<Void, Void, Void> {
     }
 
     private boolean columnHasFirstGrade(int i) {
-        return gradesIndexes.contains(i + FIRST_ROW_LEFT_COLUMNS_WITHOUT_GRADES - 1);
+        return weeksIndexes.contains(i + FIRST_ROW_LEFT_COLUMNS_WITHOUT_GRADES - 1);
     }
 
     private boolean isCellOpenForGrade(Element cell) {
@@ -106,10 +106,12 @@ public class GradesScraper extends AsyncTask<Void, Void, Void> {
         int j = 0;
         for (int i = 1; i < fifthRow.size() - 1; i++) {
             Element cell = fifthRow.get(i);
-            if (columnHasFirstGrade(i) && isCellOpenForGrade(cell)) {
-                module.getGrades().get(j).setThirdGradeAvailable(true);
-                if (!isCellEmpty(cell)) {
-                    module.getGrades().get(j).setThirdGrade(fifthRow.get(i).html());
+            if (columnHasFirstGrade(i)) {
+                if (isCellOpenForGrade(cell)) {
+                    module.getWeeks().get(j).setThirdGradeAvailable(true);
+                    if (!isCellEmpty(cell)) {
+                        module.getWeeks().get(j).setThirdGrade(fifthRow.get(i).html());
+                    }
                 }
                 j++;
             }
@@ -119,9 +121,9 @@ public class GradesScraper extends AsyncTask<Void, Void, Void> {
     private void parseWeeks() {
         Elements firstRow = gradesPage.select("table:nth-child(4) > tbody > tr:nth-child(1) > td");
         int j = 0;
-        for (int i = FIRST_ROW_LEFT_COLUMNS_WITHOUT_GRADES - 1; i < firstRow.size() - FIRST_ROW_RIGHT_COLUMNS_WITHOUT_GRADES; i++) {
-            if (gradesIndexes.contains(i)) {
-                module.getGrades().get(j++).setWeek(firstRow.get(i).html());
+        for (int i = FIRST_ROW_LEFT_COLUMNS_WITHOUT_GRADES - 1; i < firstRow.size() - 2; i++) {
+            if (weeksIndexes.contains(i)) {
+                module.getWeeks().get(j++).setWeek(firstRow.get(i).html());
             }
         }
     }

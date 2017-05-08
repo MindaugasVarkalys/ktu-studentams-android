@@ -11,7 +11,7 @@ public class Module {
     private String finalGrade;
     private String credited;
     private List<String> gradesRequestParams;
-    private List<Grade> grades;
+    private List<Week> weeks;
 
     public String getCode() {
         return code;
@@ -69,11 +69,11 @@ public class Module {
         this.gradesRequestParams = gradesRequestParams;
     }
 
-    public List<Grade> getGrades() {
-        return grades;
+    public List<Week> getWeeks() {
+        return weeks;
     }
 
-    public void setGrades(List<Grade> grades) {
-        this.grades = grades;
+    public void setWeeks(List<Week> weeks) {
+        this.weeks = weeks;
     }
 }

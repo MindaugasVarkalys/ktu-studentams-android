@@ -1,6 +1,6 @@
 package lt.chocolatebar.ktustudentams.data;
 
-public class Grade {
+public class Week {
 
     private String week = "";
     private String shortName = "";

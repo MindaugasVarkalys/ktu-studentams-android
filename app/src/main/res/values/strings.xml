@@ -18,7 +18,7 @@
 
     <!-- Side menu -->
     <string name="schedule">Tvarkaraštis</string>
-    <string name="grades">Pažymiai</string>
+    <string name="weeks">Pažymiai</string>
     <string name="choose_time_for_classes">Užsirašymas į užsiėmimus</string>
     <string name="settings">Nustatymai</string>
     <string name="moodle">Moodle naršyklėje</string>
@@ -50,7 +50,7 @@
     </string-array>
     <string-array name="default_fragments">
         <item>@string/schedule</item>
-        <item>@string/grades</item>
+        <item>@string/weeks</item>
         <item>@string/choose_time_for_classes</item>
     </string-array>
 

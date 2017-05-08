@@ -20,7 +20,7 @@ import java.util.List;
 
 import lt.chocolatebar.ktustudentams.LoadingDialog;
 import lt.chocolatebar.ktustudentams.R;
-import lt.chocolatebar.ktustudentams.data.Grade;
+import lt.chocolatebar.ktustudentams.data.Week;
 import lt.chocolatebar.ktustudentams.data.Module;
 import lt.chocolatebar.ktustudentams.data.Semester;
 import lt.chocolatebar.ktustudentams.network.GradesScraper;
@@ -56,8 +56,15 @@ public class GradesFragment extends Fragment implements AdapterView.OnItemSelect
     }
 
     private void onSemesterSelectionChanged(int position) {
-        String[] modulesNames = semesters.get(position).getModules().stream().map((Module m) -> m.getCode() + " " + m.getName()).toArray(String[]::new);
-        setSpinnerItems(moduleSpinner, modulesNames);
+        setSpinnerItems(moduleSpinner, getModulesNames(semesters.get(position).getModules()));
+    }
+
+    private String[] getModulesNames(List<Module> modules) {
+        String[] names = new String[modules.size()];
+        for (int i = 0; i < modules.size(); i++) {
+            names[i] = modules.get(i).getCode() + " " + modules.get(i).getName();
+        }
+        return names;
     }
 
     private void onModuleSelectionChanged(int position) {
@@ -93,16 +100,23 @@ public class GradesFragment extends Fragment implements AdapterView.OnItemSelect
         LoadingDialog.dismiss();
         if (semesters != null) {
             this.semesters = semesters;
-            String[] semestersNames = semesters.stream().map(Semester::getName).toArray(String[]::new);
-            setSpinnerItems(semesterSpinner, semestersNames);
+            setSpinnerItems(semesterSpinner, getSemestersNames(semesters));
         } else {
             Toast.makeText(getActivity(), R.string.failure, Toast.LENGTH_SHORT).show();
         }
     }
 
+    private String[] getSemestersNames(List<Semester> semesters) {
+        String[] semesterNames = new String[semesters.size()];
+        for (int i = 0; i < semesters.size(); i++) {
+            semesterNames[i] = semesters.get(i).getName();
+        }
+        return semesterNames;
+    }
+
     private void onGradesScraped(@Nullable Module module) {
         LoadingDialog.dismiss();
-        if (module != null && module.getGrades() != null) {
+        if (module != null && module.getWeeks() != null) {
             buildTable(module);
         } else {
             Toast.makeText(getActivity(), R.string.failure, Toast.LENGTH_SHORT).show();
@@ -111,19 +125,19 @@ public class GradesFragment extends Fragment implements AdapterView.OnItemSelect
 
     private void buildTable(Module module) {
         table.removeViews(1, table.getChildCount() - 1);
-        for (Grade grade : module.getGrades()) {
+        for (Week week : module.getWeeks()) {
             TableRow row = (TableRow) LayoutInflater.from(getActivity()).inflate(R.layout.grades_table_row, null);
-            TextView week = (TextView) row.findViewById(R.id.week);
+            TextView weekView = (TextView) row.findViewById(R.id.week);
             TextView name = (TextView) row.findViewById(R.id.name);
             TextView firstGrade = (TextView) row.findViewById(R.id.grade1);
             TextView secondGrade = (TextView) row.findViewById(R.id.grade2);
             TextView thirdGrade = (TextView) row.findViewById(R.id.grade3);
 
-            week.setText(grade.getWeek());
-            name.setText(grade.getName());
-            firstGrade.setText(grade.getFirstGrade());
-            secondGrade.setText(grade.getSecondGrade());
-            thirdGrade.setText(grade.getThirdGrade());
+            weekView.setText(week.getWeek());
+            name.setText(week.getName());
+            firstGrade.setText(week.getFirstGrade());
+            secondGrade.setText(week.getSecondGrade());
+            thirdGrade.setText(week.getThirdGrade());
             table.addView(row);
         }
     }
