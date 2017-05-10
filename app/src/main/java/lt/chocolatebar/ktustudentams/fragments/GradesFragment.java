@@ -20,9 +20,9 @@ import java.util.List;
 
 import lt.chocolatebar.ktustudentams.LoadingDialog;
 import lt.chocolatebar.ktustudentams.R;
-import lt.chocolatebar.ktustudentams.data.Week;
 import lt.chocolatebar.ktustudentams.data.Module;
 import lt.chocolatebar.ktustudentams.data.Semester;
+import lt.chocolatebar.ktustudentams.data.Week;
 import lt.chocolatebar.ktustudentams.network.GradesScraper;
 import lt.chocolatebar.ktustudentams.network.NetworkUtils;
 import lt.chocolatebar.ktustudentams.network.SemestersScraper;
@@ -39,7 +39,7 @@ public class GradesFragment extends Fragment implements AdapterView.OnItemSelect
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle(R.string.grades);
+        getActivity().setTitle(R.string.weeks);
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.setCheckedItem(R.id.nav_grades);
     }

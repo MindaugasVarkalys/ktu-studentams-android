@@ -31,8 +31,6 @@ import static org.hamcrest.Matchers.allOf;
 @LargeTest
 public class SideMenuActivityTest {
 
-    private static final String PACKAGE_NAME = "com.android.chrome";
-
     @Rule
     public IntentsTestRule<SideMenuActivity> mActivityRule = new IntentsTestRule<>(
             SideMenuActivity.class);

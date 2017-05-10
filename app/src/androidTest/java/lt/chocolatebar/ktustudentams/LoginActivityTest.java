@@ -16,7 +16,6 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.hasFocus;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static lt.chocolatebar.ktustudentams.ToastChecker.assertToastDisplayed;
 
@@ -51,11 +50,11 @@ public class LoginActivityTest {
     }
 
     @Test
-    public void clickLoginWithFilledUsernameAndPassword_opensSideMenuActivity() throws Exception {
+    public void clickLoginWithFilledIncorrectUsernameAndPassword() throws Exception {
         onView(withId(R.id.username)).perform(typeText("Username"), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText("Password"), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
-        onView(withId(R.id.drawer_layout)).check(matches(isDisplayed()));
+        assertToastDisplayed(R.string.incorrect_username_or_password, loginActivity);
     }
 
 
