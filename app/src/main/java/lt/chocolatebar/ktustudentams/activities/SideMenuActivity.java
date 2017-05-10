@@ -30,10 +30,12 @@ public class SideMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private final static String KTU_MOODLE_URL = "https://moodle.ktu.edu/";
+    private final static int GRADES_NOTIFICATION_INDEX = 0;
+    private final static int CLASS_PICKER_NOTIFICATION_INDEX = 1;
 
     private final FragmentManager manager = getFragmentManager();
     private SharedPrefs sharedPrefs;
-    NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+    private NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
     private boolean firstTimeGrouping = true;
     private final int notificationDisplaysArray[] = new int[2];
 
@@ -61,7 +63,7 @@ public class SideMenuActivity extends AppCompatActivity
         onNewIntent(getIntent());
     }
 
-    public void setDefaultFragment() {
+    private void setDefaultFragment() {
         SharedPrefs sharedPrefs = new SharedPrefs(this);
         Class<? extends Fragment> fragmentClass = sharedPrefs.getDefaultFragmentClass();
         try {
@@ -72,13 +74,13 @@ public class SideMenuActivity extends AppCompatActivity
         }
     }
 
-    public void openMoodleInBrowser() {
+    private void openMoodleInBrowser() {
         Uri uriUrl = Uri.parse(KTU_MOODLE_URL);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
         startActivity(launchBrowser);
     }
 
-    public void setStudentInfoInNavigationHeader(NavigationView navigationView) {
+    private void setStudentInfoInNavigationHeader(NavigationView navigationView) {
         View headerView = navigationView.getHeaderView(0);
         TextView navStudentNameLastname = (TextView) headerView.findViewById(R.id.StudentNameLastname);
         TextView navStudentCode = (TextView) headerView.findViewById(R.id.StudentCode);
@@ -97,16 +99,16 @@ public class SideMenuActivity extends AppCompatActivity
     }
 
     private void generateAndDisplayNotificationForGrades() {
-        notificationDisplaysArray[0] = 1;
+        notificationDisplaysArray[GRADES_NOTIFICATION_INDEX] = 1;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder notificationBuilder = buildNotificationForGrades();
 
         Intent intent = new Intent(this, SideMenuActivity.class);
         intent.putExtra("ShowGradesFragment", true);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, GRADES_NOTIFICATION_INDEX, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        if (notificationDisplaysArray[1] == 1) {
+        if (notificationDisplaysArray[CLASS_PICKER_NOTIFICATION_INDEX] == 1) {
             inboxStyle.setBigContentTitle(getString(R.string.app_name));
             if (firstTimeGrouping) {
                 inboxStyle.addLine("Naujas užsirašymo laikas!");
@@ -114,10 +116,10 @@ public class SideMenuActivity extends AppCompatActivity
             }
             inboxStyle.addLine("Naujas pažymys!");
             notificationBuilder.setStyle(inboxStyle);
-            notificationManager.cancel(1);
+            notificationManager.cancel(CLASS_PICKER_NOTIFICATION_INDEX);
         }
         notificationBuilder.setContentIntent(pendingIntent);
-        notificationManager.notify(0, notificationBuilder.build());
+        notificationManager.notify(GRADES_NOTIFICATION_INDEX, notificationBuilder.build());
     }
 
     private NotificationCompat.Builder buildNotificationForGrades() {
@@ -131,16 +133,16 @@ public class SideMenuActivity extends AppCompatActivity
     }
 
     private void generateAndDisplayNotificationForClassPicker() {
-        notificationDisplaysArray[1] = 1;
+        notificationDisplaysArray[CLASS_PICKER_NOTIFICATION_INDEX] = 1;
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder notificationBuilder = buildNotificationForClassPicker();
 
         Intent intent = new Intent(this, SideMenuActivity.class);
         intent.putExtra("ShowClassPickerActivity", true);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, CLASS_PICKER_NOTIFICATION_INDEX, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        if (notificationDisplaysArray[0] == 1) {
+        if (notificationDisplaysArray[GRADES_NOTIFICATION_INDEX] == 1) {
             inboxStyle.setBigContentTitle(getString(R.string.app_name));
             if (firstTimeGrouping) {
                 inboxStyle.addLine("Naujas pažymys!");
@@ -148,10 +150,10 @@ public class SideMenuActivity extends AppCompatActivity
             }
             inboxStyle.addLine("Naujas užsirašymo laikas!");
             notificationBuilder.setStyle(inboxStyle);
-            notificationManager.cancel(0);
+            notificationManager.cancel(GRADES_NOTIFICATION_INDEX);
         }
         notificationBuilder.setContentIntent(pendingIntent);
-        notificationManager.notify(1, notificationBuilder.build());
+        notificationManager.notify(CLASS_PICKER_NOTIFICATION_INDEX, notificationBuilder.build());
     }
 
     private NotificationCompat.Builder buildNotificationForClassPicker() {
@@ -174,21 +176,21 @@ public class SideMenuActivity extends AppCompatActivity
                 manager.beginTransaction()
                         .replace(R.id.content_for_fragment, fragment)
                         .commit();
-                ResetNotificationStatus(0);
+                ResetNotificationStatus(GRADES_NOTIFICATION_INDEX);
             } else {
                 Fragment fragment = new ClassesPickerFragment();
                 manager.beginTransaction()
                         .replace(R.id.content_for_fragment, fragment)
                         .commit();
-                ResetNotificationStatus(1);
+                ResetNotificationStatus(CLASS_PICKER_NOTIFICATION_INDEX);
             }
         }
     }
 
     private void ResetNotificationStatus(int id) {
-        if (notificationDisplaysArray[0] == 1 && notificationDisplaysArray[1] == 1) {
-            notificationDisplaysArray[0] = 0;
-            notificationDisplaysArray[1] = 0;
+        if (notificationDisplaysArray[GRADES_NOTIFICATION_INDEX] == 1 && notificationDisplaysArray[CLASS_PICKER_NOTIFICATION_INDEX] == 1) {
+            notificationDisplaysArray[GRADES_NOTIFICATION_INDEX] = 0;
+            notificationDisplaysArray[CLASS_PICKER_NOTIFICATION_INDEX] = 0;
             firstTimeGrouping = true;
             inboxStyle = new NotificationCompat.InboxStyle();
         } else notificationDisplaysArray[id] = 0;

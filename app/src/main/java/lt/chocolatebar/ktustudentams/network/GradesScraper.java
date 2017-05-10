@@ -18,8 +18,8 @@ import lt.chocolatebar.ktustudentams.data.Module;
 public class GradesScraper extends AsyncTask<Void, Void, Void> {
 
     private final static String GRADES_URL = "https://uais.cr.ktu.lt/ktuis/STUD_SS2.infivert";
-    private final static int FIRST_ROW_LEFT_COLUMNS_WITHOUT_GRADES = 4;
-    private final static int FIRST_ROW_RIGHT_COLUMNS_WITHOUT_GRADES = 4;
+    private final static int LEFT_COLUMNS_WITHOUT_GRADES = 4;
+    private final static int RIGHT_COLUMNS_WITHOUT_GRADES = 4;
 
     private Module module;
     private Document gradesPage;
@@ -47,6 +47,8 @@ public class GradesScraper extends AsyncTask<Void, Void, Void> {
             parseSecondGrade();
             parseThirdGrade();
             parseWeeks();
+            parseShortNames();
+            parseFullNames();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,7 +60,7 @@ public class GradesScraper extends AsyncTask<Void, Void, Void> {
         weeksIndexes = new ArrayList<>();
         List<Week> weeks = new ArrayList<>();
         int i;
-        for (i = FIRST_ROW_LEFT_COLUMNS_WITHOUT_GRADES - 1; i < thirdRow.size() - FIRST_ROW_RIGHT_COLUMNS_WITHOUT_GRADES; i++) {
+        for (i = LEFT_COLUMNS_WITHOUT_GRADES - 1; i < thirdRow.size() - RIGHT_COLUMNS_WITHOUT_GRADES; i++) {
             Element cell = thirdRow.get(i);
             if (isCellOpenForGrade(cell)) {
                 weeksIndexes.add(i);
@@ -90,7 +92,7 @@ public class GradesScraper extends AsyncTask<Void, Void, Void> {
     }
 
     private boolean columnHasFirstGrade(int i) {
-        return weeksIndexes.contains(i + FIRST_ROW_LEFT_COLUMNS_WITHOUT_GRADES - 1);
+        return weeksIndexes.contains(i + LEFT_COLUMNS_WITHOUT_GRADES - 1);
     }
 
     private boolean isCellOpenForGrade(Element cell) {
@@ -121,11 +123,43 @@ public class GradesScraper extends AsyncTask<Void, Void, Void> {
     private void parseWeeks() {
         Elements firstRow = gradesPage.select("table:nth-child(4) > tbody > tr:nth-child(1) > td");
         int j = 0;
-        for (int i = FIRST_ROW_LEFT_COLUMNS_WITHOUT_GRADES - 1; i < firstRow.size() - 2; i++) {
+        for (int i = LEFT_COLUMNS_WITHOUT_GRADES - 1; i < firstRow.size() - 2; i++) {
             if (weeksIndexes.contains(i)) {
                 module.getWeeks().get(j++).setWeek(firstRow.get(i).html());
             }
         }
+    }
+
+    private void parseShortNames(){
+        Elements shortNameRow = gradesPage.select("table:nth-child(4) > tbody > tr:nth-child(2) > td");
+        int j = 0;
+        for (int i = 1; i < shortNameRow.size() - 3; i++){
+            Element cell = shortNameRow.get(i);
+                if(!isCellEmpty(cell))
+                    module.getWeeks().get(j++).setShortName(shortNameRow.get(i).html());
+        }
+    }
+
+    private void parseFullNames(){
+        Elements namesRows = gradesPage.select("body > table:nth-child(5) > tbody > tr");
+        int j = 0;
+        for (int i = 1; i < namesRows.size() - 1; i++){
+            String shortName = namesRows.get(i).select(":root > td:nth-child(1)").html();
+            String fullName = namesRows.get(i).select(":root > td:nth-child(2)").html();
+            Week foundWeek = findWeekByShortName(shortName);
+            if (foundWeek != null) {
+                foundWeek.setName(fullName);
+            }
+        }
+    }
+
+    private Week findWeekByShortName(String shortName){
+        for(Week week : module.getWeeks()){
+            if(week.getShortName().equals(shortName)){
+                return week;
+            }
+        }
+        return null;
     }
 
     @Override

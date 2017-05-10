@@ -134,7 +134,7 @@ public class GradesFragment extends Fragment implements AdapterView.OnItemSelect
             TextView thirdGrade = (TextView) row.findViewById(R.id.grade3);
 
             weekView.setText(week.getWeek());
-            name.setText(week.getName());
+            name.setText(week.getShortName());
             firstGrade.setText(week.getFirstGrade());
             secondGrade.setText(week.getSecondGrade());
             thirdGrade.setText(week.getThirdGrade());
