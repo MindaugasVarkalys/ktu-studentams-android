@@ -50,12 +50,11 @@ public class LoginActivityTest {
     }
 
     @Test
-    public void clickLoginWithFilledIncorrectUsernameAndPassword() throws Exception {
+    public void clickLoginWithoutInternet() throws Exception {
         onView(withId(R.id.username)).perform(typeText("Username"), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText("Password"), closeSoftKeyboard());
         onView(withId(R.id.login)).perform(click());
-        assertToastDisplayed(R.string.incorrect_username_or_password, loginActivity);
+        assertToastDisplayed(R.string.no_internet, loginActivity);
     }
-
-
+    
 }

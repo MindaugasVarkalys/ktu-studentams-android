@@ -34,20 +34,21 @@ repositories {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.github.jhy:jsoup:f28c024ba127fd701f0d195a359afbabff04d7a1'
 
-    testCompile 'junit:junit:4.12'
-    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2'){
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'design'
         exclude module: 'support-annotations'
         exclude module: 'recyclerview-v7'
     }
-    androidTestCompile('com.android.support.test.espresso:espresso-intents:2.2.2'){
+    androidTestCompile('com.android.support.test.espresso:espresso-intents:2.2.2') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.github.jhy:jsoup:f28c024ba127fd701f0d195a359afbabff04d7a1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
+    testCompile 'junit:junit:4.12'
 }
